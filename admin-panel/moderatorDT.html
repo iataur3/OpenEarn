@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tasks - EarnTask Admin</title>
+    <link rel="stylesheet" href="./assets/css/admin.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="left">
+        <span class="menu-btn" id="menuBtn">&#9776;</span>
+        <h3>Moderator Defined Tasks</h3>
+      </div>
+      <div class="right">
+        <input type="text" id="searchInput" placeholder="Search tasks..." />
+        <button id="searchBtn">Search</button>
+        <button id="nightBtn">🌙</button>
+      </div>
+    </div>
+    <!-- sidebar.html -->
+    <div class="sidebar" id="sidebar">
+      <a href="aDashboard.html" data-role="admin">Dashboard</a>
+      <a href="userControl.html" data-role="admin">Users Control</a>
+      <a href="runningTaskIncoming.html" data-role="admin">Running Tasks</a>
+      <a href="adminWorkingTIncoming.html" data-role="admin">Admin Working Tasks</a>
+      <a href="moderatorDT.html" data-role="admin">Moderator Defined Tasks</a>
+      <a href="userWT.html" data-role="admin">User Worked Tasks</a>
+      <a href="reportsA.html" data-role="admin">Reports</a>
+      <a href="ads.html" data-role="admin">Ads</a>
+      <a href="adminPLI.html" data-role="admin">Login Info</a>
+      <a href="settings.html" data-role="admin">Settings</a>
+      <a href="index.html" data-role="admin">Logout</a>
+    </div>
+    <!-- main-content -->
+    <div class="main-content">
+      <h2>Group Moderator Defined Tasks Overview</h2>
+      <div class="status-buttons">
+        <a href="moderatorDTIncoming.html"class="status-button moderatorDTIncoming">✅ Incoming: <span id="moderatorDTIncoming">12</span></a>
+        <a href="moderatorDTRunning.html" class="status-button moderatorDTRunning">✅ Running: <span id="moderatorDTRunning">12</span></a>
+        <a href="moderatorDTPending.html" class="status-button moderatorDTPending">⏳ Pending: <span id="moderatorDTPending">5</span></a>
+        <a href="moderatorDTRejected.html" class="status-button moderatorDTRejected">❌ Rejected: <span id="moderatorDTRejected">2</span></a>
+        </div>
+        <h2>Task List</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Assigned To</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Upload Video</td>
+              <td>John Doe</td>
+              <td>Pending</td>
+              <td>
+                <button class="action approve">Approve</button>
+                <button class="action pending">Pending</button>
+                <button class="action reject">Reject</button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Complete Survey</td>
+              <td>Jane Smith</td>
+              <td>Completed</td>
+              <td>
+                <button class="action approve">Approve</button>
+                <button class="action pending">Pending</button>
+                <button class="action reject">Reject</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="./assets/js/moderatorDT.js"></script>
+  </body>
+</html>

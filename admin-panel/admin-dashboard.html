@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard - EarnTask Admin</title>
+    <link rel="stylesheet" href="./assets/css/admin.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="left">
+        <span class="menu-btn" id="menuBtn">&#9776;</span>
+        <h3>Admin Dashboard</h3>
+      </div>
+      <div class="right">
+        <input type="text" id="searchInput" placeholder="Search..." />
+        <button id="searchBtn">Search</button>
+        <button id="nightBtn">🌙</button>
+      </div>
+    </div>
+    <!-- sidebar -->
+    <div class="sidebar" id="sidebar">
+      <a href="admin-dashboard.html" data-role="admin" data-section="dashboard"
+        >Dashboard</a
+      >
+      <a href="user-control-g-moderator.html" data-role="admin"
+        >Users Control</a
+      >
+      <a href="running-task-incoming.html" data-role="admin">Running Tasks</a>
+      <a href="admin-working-t-incoming.html" data-role="admin"
+        >Admin Working</a
+      >
+      <a href="moderator-d-t-incoming.html" data-role="admin"
+        >Moderator Defined</a
+      >
+      <a href="user-worked-t-incoming.html" data-role="admin">User Worked</a>
+      <a href="admin-reports.html" data-role="admin">Reports</a>
+      <a href="ads.html" data-role="admin">Ads</a>
+      <a href="admin-p-l-i.html" data-role="admin">Login Info</a>
+      <a href="settings.html" data-role="admin">Settings</a>
+      <a href="index.html" data-role="admin">Logout</a>
+    </div>
+    <!-- main-content -->
+    <div class="main-content" id="mainContent">
+      <h2>Admin Dashboard Overview</h2>
+      <h3>Payment Processing</h3>
+      <!-- Status Button -->
+      <div class="status-buttons s">
+        <a href="payment-incoming.html" class="status-buttons incoming">
+          ✅ Incoming: <span id="payment-incoming">12</span>
+        </a>
+        <a href="payment-running.html" class="status-buttons running"
+          >✅ Running: <span id="payment-running">12</span></a
+        >
+        <a href="payment-pending.html" class="status-buttons pending"
+          >⏳ Pending: <span id="payment-pending">5</span></a
+        >
+        <a href="payment-rejected.html" class="status-buttons rejected"
+          >❌ Rejected: <span id="payment-rejected">2</span></a
+        >
+        <a href="payment-completed.html" class="status-buttons completed"
+          >✅ Completed</a
+        >
+      </div>
+
+      <button class="action running" onclick="initiatePayment()">
+        Pay Now
+      </button>
+    </div>
+    <script src="assets/js/admin-root.js"></script>
+    <script>
+      // 🧠 Payment Integration (Mock)
+      function initiatePayment() {
+        fetch("/api/initiate-payment", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount: 100 }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            window.location.href = data.paymentUrl; // redirect to gateway
+          });
+      }
+    </script>
+  </body>
+</html>

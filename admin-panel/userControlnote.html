@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tasks - EarnTask Admin</title>
+    <link rel="stylesheet" href="./assets/css/admin.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="left">
+        <span class="menu-btn" id="menuBtn">&#9776;</span>
+        <h3>User Worked Tasks</h3>
+      </div>
+      <div class="right">
+        <input type="text" id="searchInput" placeholder="Search tasks..." />
+        <button id="searchBtn">Search</button>
+        <button id="nightBtn">🌙</button>
+      </div>
+    </div>
+    <!-- sidebar -->
+    <div class="sidebar" id="sidebar">
+      <a href="admin-dashboard.html" data-role="admin">Dashboard</a>
+      <a href="user-control.html" data-role="admin">Users Control</a>
+      <a href="running-task-incoming.html" data-role="admin">Running Tasks</a>
+      <a href="adminWorkingTask.html" data-role="admin">Admin Working Tasks</a>
+      <a href="moderator-d-t-Incoming.html" data-role="admin"
+        >Moderator Defined Tasks</a
+      >
+      <a href="userWorkedTIncoming.html" data-role="admin">User Worked Tasks</a>
+      <a href="admin-report.html" data-role="admin">Reports</a>
+      <a href="ads.html" data-role="admin">Ads</a>
+      <a href="admin-p-l-i.html" data-role="admin">Login Info</a>
+      <a href="settings.html" data-role="admin">Settings</a>
+      <a href="index.html" data-role="admin">Logout</a>
+    </div>
+    <!-- main-content -->
+    <div class="main-content">
+      <h2>User Worked Tasks Overview</h2>
+      <div class="status-buttons">
+        <button class="status-button totalTasks">
+          Total Tasks: <span id="userWorkedTIncoming.htmlT">19</span>
+        </button>
+        <button class="status-button completed">
+          ✅ Completed: <span id="userWCT">12</span>
+        </button>
+        <button class="status-button pending">
+          ⏳ Pending: <span id="userWPT">5</span>
+        </button>
+        <button class="status-button rejected">
+          ❌ Rejected: <span id="userWRT">2</span>
+        </button>
+      </div>
+      <h2>Task List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Assigned To</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Upload Video</td>
+            <td>John Doe</td>
+            <td>Pending</td>
+            <td>
+              <button class="action approve">Approve</button
+              ><button class="action reject">Reject</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Complete Survey</td>
+            <td>Jane Smith</td>
+            <td>Completed</td>
+            <td>
+              <button class="action approve">Approve</button
+              ><button class="action reject">Reject</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script>
+      const sidebar = document.getElementById("sidebar");
+      const menuBtn = document.getElementById("menuBtn");
+      const nightBtn = document.getElementById("nightBtn");
+      const searchBtn = document.getElementById("searchBtn");
+      const searchInput = document.getElementById("searchInput");
+      // 🧠 Role-based sidebar filtering
+      document.addEventListener("DOMContentLoaded", () => {
+        const role = sessionStorage.getItem("role");
+        if (!role) {
+          window.location.href = "index.html"; // যদি role না থাকে, redirect করে দাও
+          return;
+        }
+        document.querySelectorAll("#sidebar a").forEach((link) => {
+          const roleAttr = link.getAttribute("data-role");
+          if (roleAttr) {
+            const allowedRoles = roleAttr.split(",").map((r) => r.trim());
+            if (!allowedRoles.includes(role)) {
+              link.style.display = "none";
+            }
+          }
+        });
+      });
+
+      // 📱 Sidebar toggle for mobile/desktop
+      menuBtn.addEventListener("click", () => {
+        window.innerWidth <= 768
+          ? sidebar.classList.toggle("show")
+          : sidebar.classList.toggle("hide");
+      });
+      document.addEventListener("click", (e) => {
+        if (
+          window.innerWidth <= 768 &&
+          !sidebar.contains(e.target) &&
+          !menuBtn.contains(e.target)
+        ) {
+          sidebar.classList.remove("show");
+        }
+      });
+      nightBtn.addEventListener("click", () => {
+        document.body.classList.toggle("night");
+        nightBtn.textContent = document.body.classList.contains("night")
+          ? "✨️"
+          : "🌙";
+      });
+
+      // 🔍 Search filter for tasks
+      searchBtn.addEventListener("click", () => {
+        const q = searchInput.value.trim().toLowerCase();
+        const rows = document.querySelectorAll("tbody tr");
+
+        rows.forEach((row) => {
+          const text = row.innerText.toLowerCase();
+          row.style.display = text.includes(q) ? "" : "none";
+        });
+      });
+    </script>
+  </body>
+</html>

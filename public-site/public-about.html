@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EarnTask</title>
+    <link rel="stylesheet" href="./assets/css/public.css" />
+  </head>
+
+  <body>
+    <!-- ✅ Topbar -->
+    <header class="topbar" id="topbar">
+      <div class="topbar-left">
+        <a href="#" id="homeToggle">🏠Home</a>
+      </div>
+      <div class="topbar-right">
+        <input type="text" placeholder="Search..." class="search-box" />
+        <button id="searchBtn" class="searchBtn">🔍</button>
+        <button id="nightBtn" class="night-mode">🌙</button>
+        <select id="languageSelect" title="Select Language"></select>
+      </div>
+    </header>
+
+    <!-- ✅ Sidebar -->
+    <nav class="sidebar" id="sidebar">
+      <ul class="sidebar-link">
+        <li><a href="public-dashboard.html" onclick="showSection('dashboard')">📊 Dashboard</a></li>
+        <li><a href="public-incoming-task.html">📝 Incoming Task</a></li>
+        <li><a href="public-working-task.html">⏳ Working Task</a></li>
+        <li><a href="public-add-task.html" class="add-task">➕ Add Tasks</a></li>
+        <li><a href="public-report.html" class="public-report">📋 Report</a></li>
+        <li><a href="public-about.html">ℹ️ About</a></li>
+      </ul>
+    </nav>
+
+    <!-- ✅ Main Content -->
+    <div class="main-content" id="mainContent">
+      <!-- ✅ Task Sections -->
+
+    <!-- ✅ Modals -->
+    <div id="taskModal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">×</span>
+        <p>📸 Upload screenshot</p>
+      </div>
+    </div>
+
+    <div id="rulesModal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeRulesModal()">×</span>
+        <div id="rulesContent"></div>
+      </div>
+    </div>
+
+    <!-- ✅ Footer -->
+    <footer style="text-align: center; margin-top: 20px; margin-bottom: 20px">
+      &copy; 2025 EarnTask. All rights reserved.
+    </footer>
+    <script src="assets/js/public-root.js"></script>
+    <script src="assets/js/public-about.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </body>
+</html>

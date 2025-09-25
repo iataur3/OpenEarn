@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Task - Social Earning</title>
+
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f4f6f8;
+        padding: 20px;
+      }
+      h2 {
+        color: #1abc9c;
+        margin-bottom: 10px;
+      }
+      .form-section {
+        background-color: white;
+        padding: 15px;
+        border-left: 5px solid #1abc9c;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+      }
+      label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+      }
+      input[type="text"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        box-sizing: border-box;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+      .submit-btn {
+        background-color: #1abc9c;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-top: 15px;
+      }
+      .submit-btn:hover {
+        background-color: #16a085;
+      }
+      .preview-box img {
+        max-width: 250px;
+        margin-top: 10px;
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .modal.hidden {
+        display: none;
+      }
+      .modal-content {
+        background: #fff;
+        padding: 20px 30px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: left;
+        position: relative;
+      }
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>➕ Add New Task</h2>
+
+    <div class="form-section">
+      <label for="platformSelect">Select Platform:</label>
+      <select id="platformSelect">
+        <option value="facebook">Facebook</option>
+        <option value="instagram">Instagram</option>
+        <option value="youtube">YouTube</option>
+        <option value="tiktok">TikTok</option>
+        <option value="likee">Likee</option>
+        <option value="wechat">WeChat</option>
+        <option value="twitter">Twitter</option>
+      </select>
+
+      <label for="taskTitle">Task Title:</label>
+      <input
+        type="text"
+        id="taskTitle"
+        placeholder="e.g. Follow & Like Latest Post"
+      />
+
+      <label for="taskRules">Task Rules:</label>
+      <textarea
+        id="taskRules"
+        rows="5"
+        placeholder="Enter detailed task rules here..."
+      ></textarea>
+
+      <label for="taskScreenshot">Attach Reference Screenshot:</label>
+      <input type="file" onchange="previewScreenshot(this)" />
+      <div class="preview-box hidden">
+        <img src="" alt="Preview Screenshot" />
+      </div>
+
+      <button class="submit-btn" onclick="submitTask()">Create Task</button>
+    </div>
+
+    <!-- ✅ Submission Modal -->
+    <div class="modal hidden" id="taskModal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">✖</span>
+        <h3>✅ Task Submitted Successfully!</h3>
+        <p>Your new task has been recorded.</p>
+      </div>
+    </div>
+
+    <script>
+      function previewScreenshot(inputElement) {
+        const file = inputElement.files[0];
+        const previewContainer = inputElement.nextElementSibling;
+        const previewImage = previewContainer.querySelector("img");
+
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            previewImage.src = e.target.result;
+            previewContainer.classList.remove("hidden");
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+
+      function submitTask() {
+        const title = document.getElementById("taskTitle").value.trim();
+        const rules = document.getElementById("taskRules").value.trim();
+
+        if (!title || !rules) {
+          alert("⚠️ Please fill in the task title and rules.");
+          return;
+        }
+
+        document.getElementById("taskModal").classList.remove("hidden");
+      }
+
+      function closeModal() {
+        document.getElementById("taskModal").classList.add("hidden");
+      }
+    </script>
+  </body>
+</html>
