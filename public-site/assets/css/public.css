@@ -140,6 +140,14 @@ body {
   display: block;
   transition: background-color 0.3s;
 }
+/* public.css */
+.sidebar-link a.active {
+  background-color: #2d2d2d;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 6px 12px;
+}
 .sidebar-link a:hover {
   background-color: #d7efdf;
   border-radius: 4px;
@@ -166,12 +174,86 @@ body {
 .main-content.shifted {
   margin-left: 0;
 }
+/* report section */
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.report-date {
+  flex: 1;
+  min-width: 120px;
+  color: #ffc107;
+}
+
+.report-title {
+  flex: 2;
+  text-align: left;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.report-input-group {
+  position: sticky;
+  bottom: 10px;
+  margin-left: 160px;
+  width: calc(100% - 160px);
+}
+.report-textarea {
+  display: block;
+  margin: 16px auto;
+  width: 95%;
+  max-width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+  border: 1px solid #0072fd;
+  border-radius: 6px;
+  background-color: #050505;
+  color: #ffffff;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.report-textarea:focus {
+  border-color: #00c6ff;
+  outline: none;
+}
+.submit-report-btn {
+  display: block;
+  margin-left: auto;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: #0072fd;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.submit-report-btn:hover {
+  background-color: #005ec4;
+}
+/* @media (max-width: 600px) {
+  .submit-report-btn {
+    width: 100%;
+    float: none;
+    margin-left: 0;
+  }
+} */
+
 /* 🔷 Task Section */
 .task-section h2 {
   color: #eaae09e8;
   margin-bottom: 10px;
 }
-.task {
+.task,
+.card {
   background-color: white;
   padding: 15px;
   margin: 10px 0;
@@ -253,6 +335,8 @@ footer {
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  /* position: sticky; */
+  bottom: 10px;
 }
 /* 🔷 Responsive Fix */
 @media (max-width: 768px) {

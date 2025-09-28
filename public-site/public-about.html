@@ -24,7 +24,7 @@
     <!-- ✅ Sidebar -->
     <nav class="sidebar" id="sidebar">
       <ul class="sidebar-link">
-        <li><a href="public-dashboard.html" onclick="showSection('dashboard')">📊 Dashboard</a></li>
+        <li><a href="public-dashboard.html">📊 Dashboard</a></li>
         <li><a href="public-incoming-task.html">📝 Incoming Task</a></li>
         <li><a href="public-working-task.html">⏳ Working Task</a></li>
         <li><a href="public-add-task.html" class="add-task">➕ Add Tasks</a></li>
@@ -43,7 +43,7 @@
         in your spare time or seeking a more consistent 
         income stream, OpenEarn has got you covered.</p>
     <!-- ✅ Modals -->
-    <div id="taskModal" class="modal hidden">
+    <div id="task-modal" class="modal hidden">
       <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">×</span>
         <p>📸 Upload screenshot</p>
@@ -57,10 +57,6 @@
       </div>
     </div>
 
-    <!-- ✅ Footer -->
-    <footer style="text-align: center; margin-top: 20px; margin-bottom: 20px">
-      &copy; 2025 EarnTask. All rights reserved.
-    </footer>
     <script src="assets/js/public-root.js"></script>
     <script src="assets/js/public-about.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

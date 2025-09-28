@@ -90,37 +90,124 @@
         cursor: pointer;
       }
     </style>
+    <link rel="stylesheet" href="./assets/css/public.css" />
   </head>
   <body>
+        <!-- ✅ Topbar -->
+    <header class="topbar" id="topbar">
+      <div class="topbar-left">
+        <a href="#" id="homeToggle">🏠Home</a>
+      </div>
+      <div class="topbar-right">
+        <input type="text" placeholder="Search..." class="search-box" />
+        <button id="searchBtn" class="searchBtn">🔍</button>
+        <button id="nightBtn" class="night-mode">🌙</button>
+        <select id="languageSelect" title="Select Language"></select>
+      </div>
+    </header>
+
+    <!-- ✅ Sidebar -->
+    <nav class="sidebar" id="sidebar">
+      <ul class="sidebar-link">
+        <li><a href="public-dashboard.html">📊 Dashboard</a></li>
+        <li><a href="public-incoming-task.html">📝 Incoming Task</a></li>
+        <li><a href="public-working-task.html">⏳ Working Task</a></li>
+        <li><a href="public-add-task.html" class="add-task">➕ Add Tasks</a></li>
+        <li><a href="public-report.html" class="public-report">📋 Report</a></li>
+        <li><a href="public-about.html">ℹ️ About</a></li>
+      </ul>
+    </nav>
+
+    <!-- ✅ Main Content -->
+    <div class="main-content" id="mainContent">
+
     <h2>➕ Add New Task</h2>
 
     <div class="form-section">
       <label for="platformSelect">Select Platform:</label>
       <select id="platformSelect">
+        <option value="web Page visibility">Web Page Visibility</option>
         <option value="facebook">Facebook</option>
         <option value="instagram">Instagram</option>
         <option value="youtube">YouTube</option>
         <option value="tiktok">TikTok</option>
         <option value="likee">Likee</option>
-        <option value="wechat">WeChat</option>
         <option value="twitter">Twitter</option>
+        <option value="telegram">Telegram</option>
+        <option value="pinterest">Pinterest</option>
+        <option value="linkedin">LinkedIn</option>
+        <option value="snapchat">Snapchat</option>
+        <option value="reddit">Reddit</option>
+        <option value="quora">Quora</option>
+        <option value="medium">Medium</option>
+        <option value="discord">Discord</option>
+        <option value="stackoverflow">Stack Overflow</option>
+        <option value="behance">Behance</option>
+        <option value="dribbble">Dribbble</option>
+        <option value="slack">Slack</option>
+        <option value="clubhouse">Clubhouse</option>
+        <option value="spotify">Spotify</option>
+        <option value="soundcloud">SoundCloud</option>
+        <option value="tinder">Tinder</option>
+        <option value="badoo">Badoo</option>
+        <option value="okcupid">OkCupid</option>
+        <option value="meetup">Meetup</option>
+        <option value="foursquare">Foursquare</option>
+        <option value="yelp">Yelp</option>
+        <option value="tripadvisor">TripAdvisor</option>
+        <option value="etsy">Etsy</option>
+        <option value="quibi">Quibi</option>
+        <option value="periscope">Periscope</option>
+        <option value="mix">Mix</option>
+        <option value="vine">Vine</option>
+        <option value="myspace">MySpace</option>
+        <option value="soundcloud">SoundCloud</option>
+        <option value="bandcamp">Bandcamp</option>
+        <option value="deviantart">DeviantArt</option>
+        <option value="livejournal">LiveJournal</option>
+        <option value="goodreads">Goodreads</option>
+        <option value="letterboxd">Letterboxd</option>
+        <option value="anchor">Anchor</option>
+        <option value="clubhouse">Clubhouse</option>
+        <option value="houseparty">Houseparty</option>
+        <option value="periscope">Periscope</option>
+        <option value="mewe">MeWe</option>
+        <option value="parler">Parler</option>
+        <option value="gab">Gab</option>
+        <option value="minds">Minds</option>
+        <option value="bitchute">BitChute</option>
+        <option value="rumble">Rumble</option>
+        <option value="wechat">WeChat</option>
+        <option value="whatsapp">WhatsApp</option>
+        <option value="vimeo">Vimeo</option>
+        <option value="tumblr">Tumblr</option>
+        <option value="flickr">Flickr</option>
+        <option value="dailymotion">Dailymotion</option>
+        <option value="vk">VK</option>
+        <option value="other">Other</option>
       </select>
 
-      <label for="taskTitle">Task Title:</label>
-      <input
-        type="text"
-        id="taskTitle"
-        placeholder="e.g. Follow & Like Latest Post"
-      />
+      <label for="task-title">Task Title:</label>
+      <select name="task-title" id="task-title">
+        <option value="visit-webpage">Visit a Webpage</option>
+        <option value="like-comment">Like & Comment</option>
+        <option value="like-comment-share">Like, Comment & Share</option>
+        <option value="follow-account">Follow an Account</option>
+        <option value="subscribe-channel">Subscribe to a Channel</option>
+        <option value="watch-video">Watch a Video</option>
+        <option value="like-video">Watch, Like, Comment & Share a Video</option>
+        <option value="join-group">Join a Group</option>
+        <option value="follow-like">Follow & Like Latest Post</option>
+      </select>
 
-      <label for="taskRules">Task Rules:</label>
+      <label for="task-rules">Task Rules:</label>
       <textarea
-        id="taskRules"
+        id="task-rules"
         rows="5"
         placeholder="Enter detailed task rules here..."
       ></textarea>
 
-      <label for="taskScreenshot">Attach Reference Screenshot:</label>
+      <label for="task-screenshot">Attach Reference Screenshot:</label>
       <input type="file" onchange="previewScreenshot(this)" />
       <div class="preview-box hidden">
         <img src="" alt="Preview Screenshot" />
@@ -129,7 +216,7 @@
       <button class="submit-btn" onclick="submitTask()">Create Task</button>
     </div>
     <!-- ✅ Submission Modal -->
-    <div class="modal hidden" id="taskModal">
+    <div class="modal hidden" id="task-modal">
       <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">✖</span>
         <h3>✅ Task Submitted Successfully!</h3>

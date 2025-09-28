@@ -24,32 +24,41 @@
     <!-- ✅ Sidebar -->
     <nav class="sidebar" id="sidebar">
       <ul class="sidebar-link">
-        <li><a href="public-dashboard.html" onclick="showSection('dashboard')">📊 Dashboard</a></li>
+        <li><a href="public-dashboard.html">📊 Dashboard</a></li>
         <li><a href="public-incoming-task.html">📝 Incoming Task</a></li>
         <li><a href="public-working-task.html">⏳ Working Task</a></li>
-        <li><a href="public-add-task.html" class="add-task">➕ Add Tasks</a></li>
-        <li><a href="public-report.html" class="public-report">📋 Report</a></li>
+        <li>
+          <a href="public-add-task.html" class="add-task">➕ Add Tasks</a>
+        </li>
+        <li>
+          <a href="public-report.html" class="public-report">📋 Report</a>
+        </li>
         <li><a href="public-about.html">ℹ️ About</a></li>
       </ul>
     </nav>
 
     <!-- ✅ Main Content -->
     <div class="main-content" id="mainContent">
-      <!-- ✅ Task Sections -->
-
-    <!-- ✅ Modals -->
-    <div id="taskModal" class="modal hidden">
-      <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">×</span>
-        <p>📸 Upload screenshot</p>
+      <!-- 📋 Report Sections -->
+      <h2>📋 Report Overview</h2>
+      <div class="card">
+        <div class="row report-header">
+          <h5 class="report-title" id="report-title">📝 Rejected Tasks</h5>
+          <h5 class="report-date" id="report-date">📅 25/08/2025</h5>
+        </div>
+        <p id="report-details">This is the report overview section.</p>
       </div>
     </div>
-
-    <div id="rulesModal" class="modal hidden">
-      <div class="modal-content">
-        <span class="close-btn" onclick="closeRulesModal()">×</span>
-        <div id="rulesContent"></div>
-      </div>
+    <div class="report-input-group">
+      <textarea
+        class="report-textarea"
+        id="report-textarea"
+        rows="2"
+        placeholder="Enter detailed report here..."
+      ></textarea>
+      <button id="submit-report-btn" class="submit-report-btn">
+        Submit Report
+      </button>
     </div>
 
     <script src="assets/js/public-root.js"></script>

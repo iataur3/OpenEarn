@@ -19,6 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
       mainContent.classList.add("shifted");
     }
   });
+
+  const currentPath = window.location.pathname.split("/").pop(); // 🔍 current page name
+  const sidebarLinks = document.querySelectorAll(".sidebar-link a");
+
+  sidebarLinks.forEach((link) => {
+    const href = link.getAttribute("href");
+    if (href === currentPath) {
+      link.classList.add("active"); // ✅ active class add
+    }
+  });
 });
 
 //night mode button
@@ -139,24 +149,24 @@ document.addEventListener("mouseup", async function (e) {
   }
 });
 
-function showSection(sectionId) {
-  if (sectionId === "public-dashboard") setDashboardData();
-  document
-    .querySelectorAll(".task-section")
-    .forEach((section) => section.classList.add("hidden"));
-  const target = document.getElementById(sectionId);
-  if (target) target.classList.remove("hidden");
+// function showSection(sectionId) {
+//   if (sectionId === "public-dashboard") setDashboardData();
+//   document
+//     .querySelectorAll(".task-section")
+//     .forEach((section) => section.classList.add("hidden"));
+//   const target = document.getElementById(sectionId);
+//   if (target) target.classList.remove("hidden");
 
-  document
-    .querySelectorAll(".sub-list a")
-    .forEach((link) => link.classList.remove("active-link"));
-  const activeLink = [...document.querySelectorAll(".sub-list a")].find(
-    (link) => link.getAttribute("onclick")?.includes(sectionId)
-  );
-  if (activeLink) activeLink.classList.add("active-link");
+//   document
+//     .querySelectorAll(".sub-list a")
+//     .forEach((link) => link.classList.remove("active-link"));
+//   const activeLink = [...document.querySelectorAll(".sub-list a")].find(
+//     (link) => link.getAttribute("onclick")?.includes(sectionId)
+//   );
+//   if (activeLink) activeLink.classList.add("active-link");
 
-  // ✅ Add this line to reset scroll
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
+//   // ✅ Add this line to reset scroll
+//   window.scrollTo({ top: 0, behavior: "smooth" });
+// }
 
-window.showSection = showSection;
+// window.showSection = showSection;

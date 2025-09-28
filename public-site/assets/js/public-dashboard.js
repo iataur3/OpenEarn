@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   renderChart("daily");
-  showSection("dashboard");
-  loadLanguages();
 
   const chartFilter = document.getElementById("chartFilter");
   if (chartFilter) {
@@ -10,28 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
-// function showSection(sectionId) {
-//   if (sectionId === "public-dashboard") setDashboardData();
-//   document
-//     .querySelectorAll(".task-section")
-//     .forEach((section) => section.classList.add("hidden"));
-//   const target = document.getElementById(sectionId);
-//   if (target) target.classList.remove("hidden");
-
-//   document
-//     .querySelectorAll(".sub-list a")
-//     .forEach((link) => link.classList.remove("active-link"));
-//   const activeLink = [...document.querySelectorAll(".sub-list a")].find(
-//     (link) => link.getAttribute("onclick")?.includes(sectionId)
-//   );
-//   if (activeLink) activeLink.classList.add("active-link");
-
-//   // ✅ Add this line to reset scroll
-//   window.scrollTo({ top: 0, behavior: "smooth" });
-// }
-
-// window.showSection = showSection;
 
 // --- Profile Form Toggle ---
 function toggleProfileForm() {

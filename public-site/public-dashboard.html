@@ -25,9 +25,10 @@
     <nav class="sidebar" id="sidebar">
       <ul class="sidebar-link">
         <li>
-          <a href="public-dashboard.html" onclick="showSection('dashboard')"
+          <!-- <a href="public-dashboard.html" onclick="showSection('dashboard')"
             >📊 Dashboard</a
-          >
+          > -->
+          <a href="public-dashboard.html">📊 Dashboard</a>
         </li>
         <li><a href="public-incoming-task.html">📝 Incoming Task</a></li>
         <li><a href="public-working-task.html">⏳ Working Task</a></li>
@@ -47,274 +48,248 @@
       <div id="dashboard" class="task-section">
         <h2>📊 Dashboard</h2>
         <div class="dashboard-row">
-          <div class="task profile-container">
-            <section class="card">
-              <img
-                src="user.jpg"
-                alt="User Photo"
-                class="profile-pic"
-                id="profilePhoto"
-              />
-              <input
-                type="file"
-                accept=".jpg,.jpeg,.png"
-                id="profilePhotoInput"
-                style="display: block; margin: 10px auto"
-                onchange="validateProfilePhoto(this)"
-              />
-              <p>Name: <span id="user-name">A Rahman</span></p>
-              <p>Email: se@example.com</p>
-              <button class="logout">Logout</button>
-              <button id="editProfileBtn" onclick="toggleProfileForm()">
-                Edit Profile
-              </button>
-              <form
-                id="profile-details-form"
-                style="margin-top: 16px; display: none"
-              >
-                <div class="profile-grid">
-                  <div>
-                    <label
-                      >Full Name:<br /><input
-                        type="text"
-                        name="s-full-name"
-                        placeholder="Full Name"
-                    /></label>
-                  </div>
-                  <div>
-                    <label
-                      >Father's Name:<br /><input
-                        type="text"
-                        name="s-father-name"
-                        placeholder="Father's Name"
-                    /></label>
-                  </div>
-                  <div>
-                    <label
-                      >Mother's Name:<br /><input
-                        type="text"
-                        name="s-mother-name"
-                        placeholder="Mother's Name"
-                    /></label>
-                  </div>
-                  <div>
-                    <label
-                      >Marital Status:<br /><input
-                        type="text"
-                        name="s-marital-status"
-                        placeholder="Marital Status"
-                    /></label>
-                  </div>
-                  <div>
-                    <label
-                      >Date of Birth:<br /><input type="date" name="s-dob"
-                    /></label>
-                  </div>
-                  <div>
-                    <label
-                      >s-religion:<br /><input
-                        type="text"
-                        name="s-religion"
-                        placeholder="s-religion"
-                    /></label>
-                  </div>
-                  <div>
-                    <label
-                      >s-profession:<br /><input
-                        type="text"
-                        name="s-profession"
-                        placeholder="s-profession"
-                    /></label>
-                  </div>
-                  <div>
-                    <label
-                      >s-country:<br /><input
-                        type="text"
-                        name="s-country"
-                        placeholder="s-country"
-                    /></label>
-                  </div>
-                  <div>
-                    <label
-                      >s-state:<br /><input
-                        type="text"
-                        name="s-state"
-                        placeholder="s-state"
-                    /></label>
-                  </div>
-                  <div>
-                    <label
-                      >s-district:<br /><input
-                        type="text"
-                        name="s-district"
-                        placeholder="s-district"
-                    /></label>
-                  </div>
-                  <div>
-                    <label
-                      >Police Station:<br /><input
-                        type="text"
-                        name="s-policeStation"
-                        placeholder="Police Station"
-                    /></label>
-                  </div>
-                  <div>
-                    <label
-                      >Union/Word:<br /><input
-                        type="text"
-                        name="s-unionWord"
-                        placeholder="Union/Word"
-                    /></label>
-                  </div>
-                  <div>
-                    <label
-                      >s-village:<br /><input
-                        type="text"
-                        name="s-village"
-                        placeholder="s-village"
-                    /></label>
-                  </div>
-                  <div>
-                    <label
-                      >Phone:<br /><input
-                        type="tel"
-                        name="phone"
-                        placeholder="Phone"
-                    /></label>
-                  </div>
-                  <div>
-                    <label
-                      >Password:<br /><input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                    /></label>
-                  </div>
+          <section class="card">
+            <img
+              src="user.jpg"
+              alt="User Photo"
+              class="profile-pic"
+              id="profilePhoto"
+            />
+            <input
+              type="file"
+              accept=".jpg,.jpeg,.png"
+              id="profilePhotoInput"
+              style="display: block; margin: 10px auto"
+              onchange="validateProfilePhoto(this)"
+            />
+            <p>Name: <span id="user-name">A Rahman</span></p>
+            <p>Email: se@example.com</p>
+            <button class="logout">Logout</button>
+            <button id="editProfileBtn" onclick="toggleProfileForm()">
+              Edit Profile
+            </button>
+            <form
+              id="profile-details-form"
+              style="margin-top: 16px; display: none"
+            >
+              <div class="profile-grid">
+                <div>
+                  <label
+                    >Full Name:<br /><input
+                      type="text"
+                      name="s-full-name"
+                      placeholder="Full Name"
+                  /></label>
                 </div>
-              </form>
-            </section>
-          </div>
-          <div class="task profile-container">
-            <section class="card">
-              <h3>Referral Program</h3>
-              <p>Your Code: <strong>SE12345</strong></p>
-              <p>Invited: 8 users</p>
-              <p>Bonus Earned: ৳800</p>
-              <button onclick="copyReferral()">Copy Code</button>
-            </section>
-          </div>
+                <div>
+                  <label
+                    >Father's Name:<br /><input
+                      type="text"
+                      name="s-father-name"
+                      placeholder="Father's Name"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >Mother's Name:<br /><input
+                      type="text"
+                      name="s-mother-name"
+                      placeholder="Mother's Name"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >Marital Status:<br /><input
+                      type="text"
+                      name="s-marital-status"
+                      placeholder="Marital Status"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >Date of Birth:<br /><input type="date" name="s-dob"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >s-religion:<br /><input
+                      type="text"
+                      name="s-religion"
+                      placeholder="s-religion"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >s-profession:<br /><input
+                      type="text"
+                      name="s-profession"
+                      placeholder="s-profession"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >s-country:<br /><input
+                      type="text"
+                      name="s-country"
+                      placeholder="s-country"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >s-state:<br /><input
+                      type="text"
+                      name="s-state"
+                      placeholder="s-state"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >s-district:<br /><input
+                      type="text"
+                      name="s-district"
+                      placeholder="s-district"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >Police Station:<br /><input
+                      type="text"
+                      name="s-policeStation"
+                      placeholder="Police Station"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >Union/Word:<br /><input
+                      type="text"
+                      name="s-unionWord"
+                      placeholder="Union/Word"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >s-village:<br /><input
+                      type="text"
+                      name="s-village"
+                      placeholder="s-village"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >Phone:<br /><input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >Password:<br /><input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                  /></label>
+                </div>
+              </div>
+            </form>
+          </section>
+          <!-- Referral Program -->
+          <section class="card">
+            <h3>Referral Program</h3>
+            <p>Your Code: <strong>SE12345</strong></p>
+            <p>Invited: 8 users</p>
+            <p>Bonus Earned: ৳800</p>
+            <button onclick="copyReferral()">Copy Code</button>
+          </section>
         </div>
         <div class="dashboard-row">
-          <div class="task">
-            <section class="card">
-              <h3>Daily Goal</h3>
-              <!-- ✅Daily Goal -->
-              <div style="margin-top: 10px">
-                <strong>✅ Completed Tasks:</strong>
-                <span id="completedCount">12</span><br />
-                <strong>⏳ Working Tasks:</strong>
-                <span id="pendingCount">5</span><br />
-                <strong>❌ Rejected Tasks:</strong>
-                <span id="rejectedCount">2</span><br />
-                <strong>💰 Total Earnings:</strong>
-                <span id="earningsAmount">$48.00</span>
+          <section class="card">
+            <h3>Daily Goal</h3>
+            <!-- ✅Daily Goal -->
+            <div style="margin-top: 10px">
+              <strong>✅ Completed Tasks:</strong>
+              <span id="completedCount">12</span><br />
+              <strong>⏳ Working Tasks:</strong>
+              <span id="pendingCount">5</span><br />
+              <strong>❌ Rejected Tasks:</strong>
+              <span id="rejectedCount">2</span><br />
+              <strong>💰 Total Earnings:</strong>
+              <span id="earningsAmount">$48.00</span>
+            </div>
+            <!--  Progress Bar -->
+            <div style="margin-top: 10px">
+              <label for="daily-progress"
+                ><strong>Completion Progress:</strong></label
+              >
+              <div class="progress-container" id="progress-container">
+                <div id="daily-progress" class="daily-progress">70%</div>
               </div>
-              <!--  Progress Bar -->
-              <div style="margin-top: 10px">
-                <label for="daily-progress"
-                  ><strong>Completion Progress:</strong></label
-                >
-                <div class="progress-container" id="progress-container">
-                  <div id="daily-progress" class="daily-progress">70%</div>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div class="task">
-            <!-- Monthly Goal -->
-            <section class="card">
-              <h3>Monthly Goal</h3>
-              <p>৳2,300 earned out of ৳5,000 goal</p>
-              <progress
-                class="progress-container"
-                id="monthly-progress"
-                value="2300"
-                max="5000"
-              ></progress>
-              <div style="margin-top: 16px">
-                <h3>Earnings Summary</h3>
-                <ul>
-                  <li>
-                    Total Earned: <span class="earnings-total">৳12,500</span>
-                  </li>
-                  <li>
-                    This Month: <span class="earnings-month">৳2,300</span>
-                  </li>
-                  <li>Last Payout: ৳500</li>
-                </ul>
-              </div>
-            </section>
-          </div>
+            </div>
+          </section>
+          <!-- Monthly Goal -->
+          <section class="card">
+            <h3>Monthly Goal</h3>
+            <p>৳2,300 earned out of ৳5,000 goal</p>
+            <progress
+              class="progress-container"
+              id="monthly-progress"
+              value="2300"
+              max="5000"
+            ></progress>
+            <div style="margin-top: 16px">
+              <h3>Earnings Summary</h3>
+              <ul>
+                <li>
+                  Total Earned: <span class="earnings-total">৳12,500</span>
+                </li>
+                <li>This Month: <span class="earnings-month">৳2,300</span></li>
+                <li>Last Payout: ৳500</li>
+              </ul>
+            </div>
+          </section>
           <!-- Earning Report Graphs -->
-          <div class="task" style="margin-top: 10px">
-            <section class="card">
-              <div class="report-header">
-                <h2 class="report-title">Earnings Report</h2>
-                <select
-                  id="reportTypeSwitcher"
-                  onchange="renderChart(this.value)"
-                >
-                  <option value="daily">Daily</option>
-                  <option value="weekly">Weekly</option>
-                  <option value="monthly">Monthly</option>
-                </select>
-              </div>
-              <div class="chart-wrapper">
-                <canvas id="earningsChart"></canvas>
-              </div>
-              <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            </section>
-          </div>
+          <section class="card">
+            <div class="report-header">
+              <h2 class="report-title">Earnings Report</h2>
+              <select
+                id="reportTypeSwitcher"
+                onchange="renderChart(this.value)"
+              >
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+              </select>
+            </div>
+            <div class="chart-wrapper">
+              <canvas id="earningsChart"></canvas>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+          </section>
         </div>
         <div class="dashboard-row">
           <!-- Activity Calendar -->
-          <div class="task profile-container">
-            <section class="card">
-              <h3>Activity Calendar</h3>
-              <p>Running Month:</p>
-              <div id="activityCalendarGrid"></div>
-            </section>
-          </div>
+          <section class="card">
+            <h3>Activity Calendar</h3>
+            <p>Running Month:</p>
+            <div id="activityCalendarGrid"></div>
+          </section>
           <!-- Community Rank -->
-          <div class="task profile-container">
             <section class="card">
               <h3>Community Rank</h3>
               <p>Position: #12 out of 500</p>
               <p>Top Performer: @Rafi — ৳15,000 this month</p>
             </section>
-          </div>
         </div>
         <div class="dashboard-row">
           <!-- Learning Progress -->
-          <div class="task profile-container">
-            <section class="card">
-              <h3>Learning Progress</h3>
-              <p>Training Completed: 3/5 Modules</p>
-              <progress class="progress-container" value="3" max="5"></progress>
-            </section>
-          </div>
+          <section class="card">
+            <h3>Learning Progress</h3>
+            <p>Training Completed: 3/5 Modules</p>
+            <progress class="progress-container" value="3" max="5"></progress>
+          </section>
         </div>
       </div>
 
-      <!-- ✅ Task Sections -->
-      <div id="facebookTasks" class="task-section hidden"></div>
-      <div id="instagramTasks" class="task-section hidden"></div>
-      <div id="youtubeTasks" class="task-section hidden"></div>
-      <div id="tiktokTasks" class="task-section hidden"></div>
-      <div id="likeeTasks" class="task-section hidden"></div>
-      <div id="wechatTasks" class="task-section hidden"></div>
-      <div id="twitterTasks" class="task-section hidden"></div>
-    </div>
     <!-- ✅ Rules Modal -->
     <div id="rulesModal" class="modal hidden">
       <div class="modal-content">

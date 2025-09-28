@@ -14,17 +14,17 @@ function previewScreenshot(inputElement) {
 }
 
 function submitTask() {
-  const title = document.getElementById("taskTitle").value.trim();
-  const rules = document.getElementById("taskRules").value.trim();
+  const title = document.getElementById("task-title").value.trim();
+  const rules = document.getElementById("task-rules").value.trim();
 
   if (!title || !rules) {
     alert("⚠️ Please fill in the task title and rules.");
     return;
   }
 
-  document.getElementById("taskModal").classList.remove("hidden");
+  document.getElementById("task-modal").classList.remove("hidden");
 }
 
 function closeModal() {
-  document.getElementById("taskModal").classList.add("hidden");
+  document.getElementById("task-modal").classList.add("hidden");
 }
