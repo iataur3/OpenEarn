@@ -6,7 +6,7 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        padding: 20px;
+        padding: 0px;
         background: #f5f5f5;
       }
       h2 {
@@ -43,48 +43,86 @@
         display: block !important;
       }
     </style>
+    <link rel="stylesheet" href="./assets/css/admin.css" />
   </head>
   <body>
-    <h2>Admin Panel: Login & Block Info</h2>
-    <div class="tab-buttons">
-      <button onclick="showTab('loginInfo')">Login Info</button>
-      <button onclick="showTab('blockInfo')">Blocked Devices</button>
+    <div class="topbar">
+      <div class="left">
+        <span class="menu-btn" id="menuBtn">&#9776;</span>
+        <h3>Admin Dashboard</h3>
+      </div>
+      <div class="right">
+        <input type="text" id="searchInput" placeholder="Search..." />
+        <button id="searchBtn">Search</button>
+        <button id="nightBtn">🌙</button>
+      </div>
     </div>
+    <!-- sidebar -->
+    <div class="sidebar" id="sidebar">
+      <a href="admin-dashboard.html" data-role="admin" data-section="dashboard"
+        >Dashboard</a
+      >
+      <a href="user-control-g-moderator.html" data-role="admin"
+        >Users Control</a
+      >
+      <a href="running-task-incoming.html" data-role="admin">Running Tasks</a>
+      <a href="admin-working-t-incoming.html" data-role="admin"
+        >Admin Working</a
+      >
+      <a href="moderator-d-t-incoming.html" data-role="admin"
+        >Moderator Defined</a
+      >
+      <a href="user-worked-t-incoming.html" data-role="admin">User Worked</a>
+      <a href="admin-reports.html" data-role="admin">Reports</a>
+      <a href="ads.html" data-role="admin">Ads</a>
+      <a href="admin-p-l-i.html" data-role="admin">Login Info</a>
+      <a href="settings.html" data-role="admin">Settings</a>
+      <a href="index.html" data-role="admin">Logout</a>
+    </div>
+    <!-- main-content -->
+    <div class="main-content">
+      <h2>Admin Panel: Login & Block Info</h2>
+      <div class="tab-buttons">
+        <button onclick="showTab('loginInfo')">Login Info</button>
+        <button onclick="showTab('blockInfo')">Blocked Devices</button>
+      </div>
 
-    <div id="loginInfo" class="tab-content visible">
-      <h3>Login History</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>User ID</th>
-            <th>Device</th>
-            <th>Network</th>
-            <th>Location</th>
-          </tr>
-        </thead>
-        <tbody id="loginTableBody">
-          <!-- JS will populate rows -->
-        </tbody>
-      </table>
-    </div>
+      <div id="loginInfo" class="tab-content visible">
+        <h3>Login History</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>User ID</th>
+              <th>Device</th>
+              <th>Network</th>
+              <th>Location</th>
+            </tr>
+          </thead>
+          <tbody id="loginTableBody">
+            <!-- JS will populate rows -->
+          </tbody>
+        </table>
+      </div>
 
-    <div id="blockInfo" class="tab-content">
-      <h3>Blocked Devices</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Device ID</th>
-            <th>Reason</th>
-            <th>Time</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="blockTableBody">
-          <!-- JS will populate rows -->
-        </tbody>
-      </table>
+      <div id="blockInfo" class="tab-content">
+        <h3>Blocked Devices</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Device ID</th>
+              <th>Reason</th>
+              <th>Time</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="blockTableBody">
+            <!-- JS will populate rows -->
+          </tbody>
+        </table>
+      </div>
     </div>
+    <script src="assets/js/admin-root.js"></script>
     <script>
       function showTab(tabId) {
         document.querySelectorAll(".tab-content").forEach((tab) => {
@@ -259,10 +297,10 @@
       populateLoginTable();
       populateBlockTable();
 
-      document.getElementById("loginBtn").addEventListener("click", () => {
-        const success = validateLogin(); //  login validation logic
-        handleLoginAttempt(success); // login fail = block trigger
-      });
+      // document.getElementById("loginBtn").addEventListener("click", () => {
+      //   const success = validateLogin(); //  login validation logic
+      //   handleLoginAttempt(success); // login fail = block trigger
+      // });
     </script>
   </body>
 </html>

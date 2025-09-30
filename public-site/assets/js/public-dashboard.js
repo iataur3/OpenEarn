@@ -1,3 +1,7 @@
+// public-dashboard.js
+import { auth } from "./firebase-config.js";
+import { signOut } from "firebase/auth";
+
 document.addEventListener("DOMContentLoaded", () => {
   renderChart("daily");
 
@@ -7,6 +11,18 @@ document.addEventListener("DOMContentLoaded", () => {
       renderChart(this.value);
     });
   }
+
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  logoutBtn.addEventListener("click", () => {
+    signOut(auth)
+      .then(() => {
+        window.location.href = "/public-site/public-login.html";
+      })
+      .catch((error) => {
+        console.error("❌ Logout failed:", error.message);
+      });
+  });
 });
 
 // --- Profile Form Toggle ---

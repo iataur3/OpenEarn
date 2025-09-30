@@ -1,33 +1,14 @@
-// admin-root.js
-
-import { auth, db, analytics } from "./firebase-config.js";
-
-// 🔐 Auth check
-auth.onAuthStateChanged((user) => {
-  if (!user) {
-    window.location.href = "/public-site/public-login.html";
-  }
-});
-
-// 🗂️ Firestore query
-import { collection, getDocs } from "firebase/firestore";
-const logsRef = collection(db, "loginLogs");
-getDocs(logsRef).then((snapshot) => {
-  snapshot.forEach((doc) => {
-    console.log("📄", doc.data());
-  });
-});
-
 const sidebar = document.getElementById("sidebar");
 const menuBtn = document.getElementById("menuBtn");
 const nightBtn = document.getElementById("nightBtn");
 const searchBtn = document.getElementById("searchBtn");
 const searchInput = document.getElementById("searchInput");
+const contentArea = document.getElementById("contentArea");
 document.addEventListener("DOMContentLoaded", () => {
   const role = sessionStorage.getItem("role");
 
   // 🔐 Role check: admin only
-  if (!role || role !== "admin") {
+  if (!role || role !== "moderator") {
     window.location.href = "/public-site/public-login.html";
     return;
   }
@@ -43,7 +24,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
+// // 🧠 Role-based sidebar filtering
+// document.addEventListener("DOMContentLoaded", () => {
+//   const role = sessionStorage.getItem("role");
+//   if (!role) {
+//     window.location.href = "index.html"; // if no role , redirect to
+//     return;
+//   }
+//   document.querySelectorAll("#sidebar a").forEach((link) => {
+//     const roleAttr = link.getAttribute("data-role");
+//     if (roleAttr) {
+//       const allowedRoles = roleAttr.split(",").map((r) => r.trim());
+//       if (!allowedRoles.includes(role)) {
+//         link.style.display = "none";
+//       }
+//     }
+//   });
+// });
 // 🟢 Activate current menu item based on URL
 function activateSection(sectionName) {
   document.querySelectorAll("[data-section]").forEach((el) => {
@@ -68,6 +65,18 @@ if (path.includes("admin-dashboard")) {
 } //  section add
 
 activateSection(section);
+
+// // 🟢 Activate current menu item based on URL
+// function activateMenu(selector) {
+//   const currentPath = decodeURIComponent(window.location.pathname);
+//   document.querySelectorAll(selector).forEach((el) => {
+//     const elPath = decodeURIComponent(new URL(el.href).pathname);
+//     el.classList.toggle("active", elPath === currentPath);
+//   });
+// }
+// // 🔁 Apply to sidebar and status buttons
+// activateMenu("#sidebar a");
+// activateMenu("status-buttons");
 
 // 📱 Sidebar toggle for mobile/desktop
 menuBtn.addEventListener("click", () => {

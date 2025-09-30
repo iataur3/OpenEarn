@@ -1,4 +1,22 @@
-// --- Page Load Initialization ---
+// public-root.js
+
+import { auth, db, analytics } from "./firebase-config.js";
+// 🔐 Auth check
+auth.onAuthStateChanged((user) => {
+  if (!user) {
+    window.location.href = "/public-site/public-login.html";
+  }
+});
+
+// 🗂️ Firestore query
+import { collection, getDocs } from "firebase/firestore";
+const logsRef = collection(db, "loginLogs");
+getDocs(logsRef).then((snapshot) => {
+  snapshot.forEach((doc) => {
+    console.log("📄", doc.data());
+  });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   // showSection("dashboard");
   loadLanguages();

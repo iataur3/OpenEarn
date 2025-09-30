@@ -1,0 +1,19 @@
+{
+  "hosting": {
+    "public": "public-site",
+    "rewrites": [
+      {
+        "source": "/admin-panel/**",
+        "destination": "/admin-panel/index.html"
+      },
+      {
+        "source": "/moderator-panel/**",
+        "destination": "/moderator-panel/index.html"
+      },
+      {
+        "source": "**",
+        "destination": "/public-index.html"
+      }
+    ]
+  }
+}
