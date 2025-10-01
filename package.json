@@ -4,7 +4,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "vite"
+    "dev": "vite",
+    "functions": "firebase emulators:start --only functions",
+    "serve": "concurrently \"npm run functions\" \"npm run dev\""
   },
-  "dependencies": {}
+  "devDependencies": {
+    "vite": "^6.3.6",
+    "concurrently": "^8.2.0"
+  }
 }
