@@ -25,7 +25,7 @@
         >User W Tasks</a
       >
       <a href="mReports.html" data-role="admin,moderator">Reports</a>
-      <a href="index.html" data-role="admin,moderator">Logout</a>
+      <a href="moderator-index.html" data-role="admin,moderator">Logout</a>
     </div>
     <div class="main-content" id="mainContent">
       <div class="content-area" id="contentArea">
@@ -50,57 +50,5 @@
       </div>
     </div>
     <script src="./assets/js/moderator-root.js"></script>
-    <!-- <script>
-      const sidebar = document.getElementById("sidebar");
-      const menuBtn = document.getElementById("menuBtn");
-      const nightBtn = document.getElementById("nightBtn");
-      const searchBtn = document.getElementById("searchBtn");
-      const searchInput = document.getElementById("searchInput");
-      const contentArea = document.getElementById("contentArea");
-      // 🧠 Role-based sidebar filtering
-      document.addEventListener("DOMContentLoaded", () => {
-        const role = sessionStorage.getItem("role");
-        if (!role) {
-          window.location.href = "index.html"; // যদি role না থাকে, redirect করে দাও
-          return;
-        }
-        document.querySelectorAll("#sidebar a").forEach((link) => {
-          const roleAttr = link.getAttribute("data-role");
-          if (roleAttr) {
-            const allowedRoles = roleAttr.split(",").map((r) => r.trim());
-            if (!allowedRoles.includes(role)) {
-              link.style.display = "none";
-            }
-          }
-        });
-      });
-
-      menuBtn.addEventListener("click", () => {
-        window.innerWidth <= 768
-          ? sidebar.classList.toggle("show")
-          : sidebar.classList.toggle("hide");
-      });
-      document.addEventListener("click", (e) => {
-        if (
-          window.innerWidth <= 768 &&
-          !sidebar.contains(e.target) &&
-          !menuBtn.contains(e.target)
-        ) {
-          sidebar.classList.remove("show");
-        }
-      });
-      nightBtn.addEventListener("click", () => {
-        document.body.classList.toggle("night");
-        nightBtn.textContent = document.body.classList.contains("night")
-          ? "✨️"
-          : "🌙";
-      });
-      searchBtn.addEventListener("click", () => {
-        const q = searchInput.value.trim();
-        contentArea.innerHTML = q
-          ? `<p>Search results for: <strong>${q}</strong></p>`
-          : "<p>Please type something to search</p>";
-      });
-    </script> -->
   </body>
 </html>

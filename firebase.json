@@ -8,11 +8,11 @@
       },
       {
         "source": "/admin-panel/**",
-        "destination": "/admin-panel/index.html"
+        "destination": "/admin-panel/admin-index.html"
       },
       {
         "source": "/moderator-panel/**",
-        "destination": "/moderator-panel/index.html"
+        "destination": "/moderator-panel/moderator-index.html"
       }
     ]
   }

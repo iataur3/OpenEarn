@@ -10,16 +10,16 @@ import { getAnalytics } from "firebase/analytics";
 const app = initializeApp(firebaseConfig);
 
 // 🔹 Services
-const rtdb = getDatabase(app);        // Realtime DB
-const firestore = getFirestore(app);  // Firestore
-const auth = getAuth(app);            // Auth
-const analytics = getAnalytics(app);  // Analytics
+const rtdb = getDatabase(app); // Realtime DB
+const firestore = getFirestore(app); // Firestore
+const auth = getAuth(app); // Auth
+const analytics = getAnalytics(app); // Analytics
 
 // ✅ Realtime DB test
 console.log("✅ Firebase Realtime DB connected:", rtdb);
-set(ref(rtdb, 'admin/test'), {
+set(ref(rtdb, "admin/test"), {
   status: "connected",
-  time: Date.now()
+  time: Date.now(),
 });
 
 // 🔐 Auth check
@@ -63,23 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-// // 🧠 Role-based sidebar filtering
-// document.addEventListener("DOMContentLoaded", () => {
-//   const role = sessionStorage.getItem("role");
-//   if (!role) {
-//     window.location.href = "index.html"; // if no role , redirect to
-//     return;
-//   }
-//   document.querySelectorAll("#sidebar a").forEach((link) => {
-//     const roleAttr = link.getAttribute("data-role");
-//     if (roleAttr) {
-//       const allowedRoles = roleAttr.split(",").map((r) => r.trim());
-//       if (!allowedRoles.includes(role)) {
-//         link.style.display = "none";
-//       }
-//     }
-//   });
-// });
 // 🟢 Activate current menu item based on URL
 function activateSection(sectionName) {
   document.querySelectorAll("[data-section]").forEach((el) => {

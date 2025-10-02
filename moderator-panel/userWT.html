@@ -25,7 +25,7 @@
         >User W Tasks</a
       >
       <a href="mReports.html" data-role="admin,moderator">Reports</a>
-      <a href="index.html" data-role="admin,moderator">Logout</a>
+      <a href="moderator-index.html" data-role="admin,moderator">Logout</a>
     </div>
     <!-- main-content -->
     <div class="main-content">
@@ -77,63 +77,6 @@
         </table>
       </div>
     </div>
-        <script src="./assets/js/moderator-root.js"></script>
-    <!-- <script> -->
-    //   const sidebar = document.getElementById("sidebar");
-    //   const menuBtn = document.getElementById("menuBtn");
-    //   const nightBtn = document.getElementById("nightBtn");
-    //   const searchBtn = document.getElementById("searchBtn");
-    //   const searchInput = document.getElementById("searchInput");
-    //   // 🧠 Role-based sidebar filtering
-    //   document.addEventListener("DOMContentLoaded", () => {
-    //     const role = sessionStorage.getItem("role");
-    //     if (!role) {
-    //       window.location.href = "index.html"; // যদি role না থাকে, redirect করে দাও
-    //       return;
-    //     }
-    //     document.querySelectorAll("#sidebar a").forEach((link) => {
-    //       const roleAttr = link.getAttribute("data-role");
-    //       if (roleAttr) {
-    //         const allowedRoles = roleAttr.split(",").map((r) => r.trim());
-    //         if (!allowedRoles.includes(role)) {
-    //           link.style.display = "none";
-    //         }
-    //       }
-    //     });
-    //   });
-
-    //   // 📱 Sidebar toggle for mobile/desktop
-    //   menuBtn.addEventListener("click", () => {
-    //     window.innerWidth <= 768
-    //       ? sidebar.classList.toggle("show")
-    //       : sidebar.classList.toggle("hide");
-    //   });
-    //   document.addEventListener("click", (e) => {
-    //     if (
-    //       window.innerWidth <= 768 &&
-    //       !sidebar.contains(e.target) &&
-    //       !menuBtn.contains(e.target)
-    //     ) {
-    //       sidebar.classList.remove("show");
-    //     }
-    //   });
-    //   nightBtn.addEventListener("click", () => {
-    //     document.body.classList.toggle("night");
-    //     nightBtn.textContent = document.body.classList.contains("night")
-    //       ? "✨️"
-    //       : "🌙";
-    //   });
-
-    //   // 🔍 Search filter for tasks
-    //   searchBtn.addEventListener("click", () => {
-    //     const q = searchInput.value.trim().toLowerCase();
-    //     const rows = document.querySelectorAll("tbody tr");
-
-    //     rows.forEach((row) => {
-    //       const text = row.innerText.toLowerCase();
-    //       row.style.display = text.includes(q) ? "" : "none";
-    //     });
-    //   });
-    // </script>
+    <script src="./assets/js/moderator-root.js"></script>
   </body>
 </html>
