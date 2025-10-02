@@ -1,16 +1,36 @@
 // public-root.js
+import { firebaseConfig } from "./firebase-config.js";
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, set } from "firebase/database";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
 
-import { auth, db, analytics } from "./firebase-config.js";
+// 🔹 Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// 🔹 Services
+const rtdb = getDatabase(app);        // Realtime DB
+const firestore = getFirestore(app);  // Firestore
+const auth = getAuth(app);            // Auth
+const analytics = getAnalytics(app);  // Analytics
+
+// ✅ Realtime DB test
+console.log("✅ Firebase Realtime DB connected:", rtdb);
+set(ref(rtdb, 'admin/test'), {
+  status: "connected",
+  time: Date.now()
+});
+
 // 🔐 Auth check
-auth.onAuthStateChanged((user) => {
+onAuthStateChanged(auth, (user) => {
   if (!user) {
     window.location.href = "/public-site/public-login.html";
   }
 });
 
 // 🗂️ Firestore query
-import { collection, getDocs } from "firebase/firestore";
-const logsRef = collection(db, "loginLogs");
+const logsRef = collection(firestore, "loginLogs");
 getDocs(logsRef).then((snapshot) => {
   snapshot.forEach((doc) => {
     console.log("📄", doc.data());

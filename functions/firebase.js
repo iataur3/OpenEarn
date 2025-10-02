@@ -1,6 +1,8 @@
-// functions/firebase.js
-// const admin = require("./firebase");
-// const logsRef = admin.firestore().collection("loginLogs");
+import { getDatabase, ref, set } from "firebase/database";
+
+const db = getDatabase();
+console.log("Firebase DB connected:", db);
+
 const admin = require("firebase-admin");
 const serviceAccount = require("./serviceAccountKey.json"); // 🔐 Download from Firebase Console
 
