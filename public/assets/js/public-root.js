@@ -10,22 +10,22 @@ import { getAnalytics } from "firebase/analytics";
 const app = initializeApp(firebaseConfig);
 
 // 🔹 Services
-const rtdb = getDatabase(app);        // Realtime DB
-const firestore = getFirestore(app);  // Firestore
-const auth = getAuth(app);            // Auth
-const analytics = getAnalytics(app);  // Analytics
+const rtdb = getDatabase(app); // Realtime DB
+const firestore = getFirestore(app); // Firestore
+const auth = getAuth(app); // Auth
+const analytics = getAnalytics(app); // Analytics
 
 // ✅ Realtime DB test
 console.log("✅ Firebase Realtime DB connected:", rtdb);
-set(ref(rtdb, 'admin/test'), {
+set(ref(rtdb, "admin/test"), {
   status: "connected",
-  time: Date.now()
+  time: Date.now(),
 });
 
 // 🔐 Auth check
 onAuthStateChanged(auth, (user) => {
   if (!user) {
-    window.location.href = "/public-site/public-login.html";
+    window.location.href = "/public/public-login.html";
   }
 });
 

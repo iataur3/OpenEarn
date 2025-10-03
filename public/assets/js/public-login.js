@@ -13,7 +13,7 @@ signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
     console.log("✅ Login success:", user.uid);
-    window.location.href = "/public-site/public-dashboard.html";
+    window.location.href = "/public/public-dashboard.html";
   })
   .catch((error) => {
     console.error("❌ Login error:", error.message);

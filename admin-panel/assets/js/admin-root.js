@@ -25,7 +25,7 @@ set(ref(rtdb, "admin/test"), {
 // 🔐 Auth check
 onAuthStateChanged(auth, (user) => {
   if (!user) {
-    window.location.href = "/public-site/public-login.html";
+    window.location.href = "/public/public-login.html";
   }
 });
 
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 🔐 Role check: admin only
   if (!role || role !== "admin") {
-    window.location.href = "/public-site/public-login.html";
+    window.location.href = "/public/public-login.html";
     return;
   }
 
