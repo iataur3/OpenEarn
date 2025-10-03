@@ -1,18 +1,15 @@
 {
   "hosting": {
     "public": "public-site",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
     "rewrites": [
       {
         "source": "**",
-        "destination": "/public-index.html"
-      },
-      {
-        "source": "/admin-panel/**",
-        "destination": "/admin-panel/admin-index.html"
-      },
-      {
-        "source": "/moderator-panel/**",
-        "destination": "/moderator-panel/moderator-index.html"
+        "destination": "/index.html"
       }
     ]
   }
