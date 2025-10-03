@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EarnTask</title>
+    <link rel="stylesheet" href="./assets/css/public-dashboard.css" />
+    <link rel="stylesheet" href="./assets/css/public.css" />
+  </head>
+
+  <body>
+    <!-- ✅ Topbar -->
+    <header class="topbar" id="topbar">
+      <div class="topbar-left">
+        <a href="#" id="homeToggle">🏠Home</a>
+      </div>
+      <div class="topbar-right">
+        <input type="text" placeholder="Search..." class="search-box" />
+        <button id="searchBtn" class="searchBtn">🔍</button>
+        <button id="nightBtn" class="night-mode">🌙</button>
+        <select id="languageSelect" title="Select Language"></select>
+      </div>
+    </header>
+    <!-- ✅ Sidebar -->
+    <nav class="sidebar" id="sidebar">
+      <ul class="sidebar-link">
+        <li>
+          <!-- <a href="public-dashboard.html" onclick="showSection('dashboard')"
+            >📊 Dashboard</a
+          > -->
+          <a href="public-dashboard.html">📊 Dashboard</a>
+        </li>
+        <li><a href="public-incoming-task.html">📝 Incoming Task</a></li>
+        <li><a href="public-working-task.html">⏳ Working Task</a></li>
+        <li>
+          <a href="public-add-task.html" class="add-task">➕ Add Tasks</a>
+        </li>
+        <li>
+          <a href="public-report.html" class="public-report">📋 Report</a>
+        </li>
+        <li><a href="public-about.html">ℹ️ About</a></li>
+      </ul>
+    </nav>
+
+    <!-- ✅ Main Content -->
+    <div class="main-content" id="mainContent">
+      <!-- ✅ Dashboard Section -->
+      <div id="dashboard" class="task-section">
+        <h2>📊 Dashboard</h2>
+        <div class="dashboard-row">
+          <section class="card">
+            <img
+              src="user.jpg"
+              alt="User Photo"
+              class="profile-pic"
+              id="profilePhoto"
+            />
+            <input
+              type="file"
+              accept=".jpg,.jpeg,.png"
+              id="profilePhotoInput"
+              style="display: block; margin: 10px auto"
+              onchange="validateProfilePhoto(this)"
+            />
+            <p>Name: <span id="user-name">A Rahman</span></p>
+            <p>User ID: se@example.com</p>
+            <button class="logout" id="logoutBtn">Logout</button>
+            <button id="editProfileBtn" onclick="toggleProfileForm()">
+              Edit Profile
+            </button>
+            <form
+              id="profile-details-form"
+              style="margin-top: 16px; display: none"
+            >
+              <div class="profile-grid">
+                <div>
+                  <label
+                    >Full Name:<br /><input
+                      type="text"
+                      name="s-full-name"
+                      placeholder="Full Name"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >Father's Name:<br /><input
+                      type="text"
+                      name="s-father-name"
+                      placeholder="Father's Name"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >Mother's Name:<br /><input
+                      type="text"
+                      name="s-mother-name"
+                      placeholder="Mother's Name"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >Marital Status:<br /><input
+                      type="text"
+                      name="s-marital-status"
+                      placeholder="Marital Status"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >Date of Birth:<br /><input type="date" name="s-dob"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >s-religion:<br /><input
+                      type="text"
+                      name="s-religion"
+                      placeholder="s-religion"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >s-profession:<br /><input
+                      type="text"
+                      name="s-profession"
+                      placeholder="s-profession"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >s-country:<br /><input
+                      type="text"
+                      name="s-country"
+                      placeholder="s-country"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >s-state:<br /><input
+                      type="text"
+                      name="s-state"
+                      placeholder="s-state"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >s-district:<br /><input
+                      type="text"
+                      name="s-district"
+                      placeholder="s-district"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >Police Station:<br /><input
+                      type="text"
+                      name="s-policeStation"
+                      placeholder="Police Station"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >Union/Word:<br /><input
+                      type="text"
+                      name="s-unionWord"
+                      placeholder="Union/Word"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >s-village:<br /><input
+                      type="text"
+                      name="s-village"
+                      placeholder="s-village"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >Phone:<br /><input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone"
+                  /></label>
+                </div>
+                <div>
+                  <label
+                    >Password:<br /><input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                  /></label>
+                </div>
+              </div>
+            </form>
+          </section>
+          <!-- Referral Program -->
+          <section class="card">
+            <h3>Referral Program</h3>
+            <p>Your Code: <strong>SE12345</strong></p>
+            <p>Invited: 8 users</p>
+            <p>Bonus Earned: ৳800</p>
+            <button onclick="copyReferral()">Copy Code</button>
+          </section>
+        </div>
+        <div class="dashboard-row">
+          <section class="card">
+            <h3>Daily Goal</h3>
+            <!-- ✅Daily Goal -->
+            <div style="margin-top: 10px">
+              <strong>✅ Completed Tasks:</strong>
+              <span id="completedCount">12</span><br />
+              <strong>⏳ Working Tasks:</strong>
+              <span id="pendingCount">5</span><br />
+              <strong>❌ Rejected Tasks:</strong>
+              <span id="rejectedCount">2</span><br />
+              <strong>💰 Total Earnings:</strong>
+              <span id="earningsAmount">$48.00</span>
+            </div>
+            <!--  Progress Bar -->
+            <div style="margin-top: 10px">
+              <label for="daily-progress"
+                ><strong>Completion Progress:</strong></label
+              >
+              <div class="progress-container" id="progress-container">
+                <div id="daily-progress" class="daily-progress">70%</div>
+              </div>
+            </div>
+          </section>
+          <!-- Monthly Goal -->
+          <section class="card">
+            <h3>Monthly Goal</h3>
+            <p>৳2,300 earned out of ৳5,000 goal</p>
+            <progress
+              class="progress-container"
+              id="monthly-progress"
+              value="2300"
+              max="5000"
+            ></progress>
+            <div style="margin-top: 16px">
+              <h3>Earnings Summary</h3>
+              <ul>
+                <li>
+                  Total Earned: <span class="earnings-total">৳12,500</span>
+                </li>
+                <li>This Month: <span class="earnings-month">৳2,300</span></li>
+                <li>Last Payout: ৳500</li>
+              </ul>
+            </div>
+          </section>
+          <!-- Earning Report Graphs -->
+          <section class="card">
+            <div class="report-header">
+              <h2 class="report-title">Earnings Report</h2>
+              <select
+                id="reportTypeSwitcher"
+                onchange="renderChart(this.value)"
+              >
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+              </select>
+            </div>
+            <div class="chart-wrapper">
+              <canvas id="earningsChart"></canvas>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+          </section>
+        </div>
+        <div class="dashboard-row">
+          <!-- Activity Calendar -->
+          <section class="card">
+            <h3>Activity Calendar</h3>
+            <p>Running Month:</p>
+            <div id="activityCalendarGrid"></div>
+          </section>
+          <!-- Community Rank -->
+            <section class="card">
+              <h3>Community Rank</h3>
+              <p>Position: #12 out of 500</p>
+              <p>Top Performer: @Rafi — ৳15,000 this month</p>
+            </section>
+        </div>
+        <div class="dashboard-row">
+          <!-- Learning Progress -->
+          <section class="card">
+            <h3>Learning Progress</h3>
+            <p>Training Completed: 3/5 Modules</p>
+            <progress class="progress-container" value="3" max="5"></progress>
+          </section>
+        </div>
+      </div>
+
+    <!-- ✅ Rules Modal -->
+    <div id="rulesModal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeRulesModal()">×</span>
+        <div id="rulesContent"></div>
+      </div>
+    </div>
+
+    <!-- ✅ Footer -->
+    <footer>&copy; 2025 EarnTask. All rights reserved.</footer>
+    <script src="assets/js/public-root.js"></script>
+    <script src="assets/js/public-dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </body>
+</html>

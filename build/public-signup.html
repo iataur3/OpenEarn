@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>EarnTask All-in-One</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/public-login-signup-root.css" />
+  </head>
+  <body>
+    <!-- Your full HTML content remains unchanged -->
+    <header>
+      <nav>
+        <strong>OpenEarn</strong>
+        <a href="public-index.html">Home</a>
+        <a href="#" onclick="showSection('signup')">Sign Up</a>
+        <a href="public-login.html">Login</a>
+      </nav>
+    </header>
+
+    <!-- Signup Section -->
+    <section id="signup" class="section">
+      <form id="signup-form">
+        <h2>Earn Task Sign up Form</h2>
+        <!-- Personal Info -->
+        <label for="s-full-name">Full Name</label>
+        <input
+          type="text"
+          class="form-input"
+          id="s-full-name"
+          placeholder="Enter your full name"
+        />
+        <div class="error" id="error_s-full-name"></div>
+
+        <label for="s-father-name">Father’s Name</label>
+        <input
+          type="text"
+          class="form-input"
+          id="s-father-name"
+          placeholder="Enter father's name"
+        />
+        <div class="error" id="error_s-father-name"></div>
+
+        <label for="s-mother-name">Mother’s Name</label>
+        <input
+          type="text"
+          class="form-input"
+          id="s-mother-name"
+          placeholder="Enter mother's name"
+        />
+        <div class="error" id="error_s-mother-name"></div>
+
+        <label for="s-marital-status">Marital Status</label>
+        <select id="s-marital-status" class="form-input">
+          <option value="">Select marital status</option>
+          <option value="single">Single</option>
+          <option value="married">Married</option>
+          <option value="divorced">Divorced</option>
+          <option value="other">Other</option>
+        </select>
+        <div class="error" id="error_s-marital-status"></div>
+
+        <label for="s-dob">Date of Birth</label>
+        <input type="date" id="s-dob" class="form-input" />
+        <div class="error" id="error_s-dob"></div>
+
+        <label for="s-religion">Religion</label>
+        <select id="s-religion">
+          <option value="">Select Religion</option>
+          <option value="islam">Islam</option>
+          <option value="hinduism">Hinduism</option>
+          <option value="christianity">Christianity</option>
+          <option value="buddhism">Buddhism</option>
+          <option value="other">Other</option>
+        </select>
+        <div class="error" id="error_s-religion"></div>
+
+        <label for="s-profession">Profession</label>
+        <input
+          type="text"
+          id="s-profession"
+          class="form-input"
+          placeholder="Enter your s-profession"
+        />
+        <div class="error" id="error_s-profession"></div>
+
+        <!-- Location -->
+        <label for="s-village">Village</label>
+        <input
+          type="text"
+          id="s-village"
+          class="form-input"
+          placeholder="Enter your s-village"
+        />
+        <div class="error" id="error_s-village"></div>
+
+        <label for="s-unionWord">Union / Ward</label>
+        <input
+          type="text"
+          id="s-unionWord"
+          class="form-input"
+          placeholder="Enter your union or ward"
+        />
+        <div class="error" id="error_s-unionWord"></div>
+
+        <label for="s-policeStation">Police Station</label>
+        <input
+          type="text"
+          id="s-policeStation"
+          class="form-input"
+          placeholder="Enter your police station"
+        />
+        <div class="error" id="error_s-policeStation"></div>
+
+        <label for="s-district">District</label>
+        <input
+          type="text"
+          id="s-district"
+          class="form-input"
+          placeholder="Enter your s-district"
+        />
+        <div class="error" id="error_s-district"></div>
+
+        <label for="s-state">State</label>
+        <input
+          type="text"
+          id="s-state"
+          class="form-input"
+          placeholder="Enter your s-state"
+        />
+        <div class="error" id="error_s-state"></div>
+
+        <label for="s-country">Country</label>
+        <div class="input-wrapper" style="position: relative">
+          <input
+            type="text"
+            id="s-country"
+            class="form-input"
+            placeholder="Enter your s-country"
+            autocomplete="off"
+          />
+          <div class="autocomplete-list" id="s-country_suggestions"></div>
+        </div>
+        <div class="error" id="error_s-country"></div>
+
+        <!-- Contact -->
+        <label for="phone">Phone Number</label>
+        <div class="phone-wrapper" style="position: relative">
+          <span id="s-countryCodePrefix" class="code-prefix">+880</span>
+          <input
+            type="tel"
+            id="phone"
+            class="form-input"
+            placeholder="01XXXXXXXXX"
+          />
+        </div>
+        <div class="error" id="error_phone"></div>
+
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="form-input"
+          placeholder="example@gmail.com"
+        />
+        <div class="error" id="error_email"></div>
+
+        <!-- Password -->
+        <label for="password">Password</label>
+        <div class="password-wrapper" style="position: relative">
+          <input
+            type="password"
+            id="password"
+            class="form-input"
+            placeholder="Minimum 8 characters"
+          />
+          <span
+            class="toggle-password"
+            onclick="togglePassword('password', this)"
+            >👁️</span
+          >
+        </div>
+        <div class="error" id="error_password"></div>
+
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="password-wrapper" style="position: relative">
+          <input
+            type="password"
+            id="confirmPassword"
+            class="form-input"
+            placeholder="Re-enter password"
+          />
+          <span
+            class="toggle-password"
+            onclick="togglePassword('confirmPassword', this)"
+            >👁️</span
+          >
+        </div>
+        <div class="error" id="error_confirmPassword"></div>
+
+        <button type="submit">Submit</button>
+
+        <p>
+          <a href="public-login.html"> Already have an account? Login here</a>
+        </p>
+      </form>
+    </section>
+
+    <!-- Confirmation Section -->
+    <section id="confirmation" class="section">
+      <div class="container">
+        <h2>Signup Confirmation</h2>
+        <div id="noData" class="no-data" style="display: none">
+          No signup data found. Please fill out the signup form first.
+        </div>
+        <table id="dataTable" style="display: none">
+          <tr>
+            <th>Full Name</th>
+            <td id="val_s-full-name"></td>
+          </tr>
+          <tr>
+            <th>Father’s Name</th>
+            <td id="val_s-father-name"></td>
+          </tr>
+          <tr>
+            <th>Mother’s Name</th>
+            <td id="val_s-mother-name"></td>
+          </tr>
+          <tr>
+            <th>Marital Status</th>
+            <td id="val_s-marital-status"></td>
+          </tr>
+          <tr>
+            <th>Date of Birth</th>
+            <td id="val_s-dob"></td>
+          </tr>
+          <tr>
+            <th>Religion</th>
+            <td id="val_s-religion"></td>
+          </tr>
+          <tr>
+            <th>Profession</th>
+            <td id="val_s-profession"></td>
+          </tr>
+          <tr>
+            <th>s-country</th>
+            <td id="val_s-country"></td>
+          </tr>
+          <tr>
+            <th>State</th>
+            <td id="val_s-state"></td>
+          </tr>
+          <tr>
+            <th>District</th>
+            <td id="val_s-district"></td>
+          </tr>
+          <tr>
+            <th>Police Station</th>
+            <td id="val_s-policeStation"></td>
+          </tr>
+          <tr>
+            <th>Union / Ward</th>
+            <td id="val_s-unionWord"></td>
+          </tr>
+          <tr>
+            <th>Village</th>
+            <td id="val_s-village"></td>
+          </tr>
+          <tr>
+            <th>Phone Number</th>
+            <td id="val_phone"></td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td id="val_email"></td>
+          </tr>
+          <tr>
+            <th>Password</th>
+            <td id="val_password"></td>
+          </tr>
+        </table>
+        <div class="actions">
+          <a href="#" onclick="showSection('signup')">Edit Information</a>
+          <a href="public-login.html" class="index" title="View index"
+            >👤Continue</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <footer>&copy; 2025 EarnTask. All rights reserved.</footer>
+
+    <div id="toast"></div>
+    <script src="./assets/js/public-signup.js"></script>
+  </body>
+</html>

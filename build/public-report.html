@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EarnTask</title>
+    <link rel="stylesheet" href="./assets/css/public.css" />
+    <link rel="stylesheet" href="./assets/css/public-report.css" />
+  </head>
+
+  <body>
+    <!-- ✅ Topbar -->
+    <header class="topbar" id="topbar">
+      <div class="topbar-left">
+        <a href="#" id="homeToggle">🏠Home</a>
+      </div>
+      <div class="topbar-right">
+        <input type="text" placeholder="Search..." class="search-box" />
+        <button id="searchBtn" class="searchBtn">🔍</button>
+        <button id="nightBtn" class="night-mode">🌙</button>
+        <select id="languageSelect" title="Select Language"></select>
+      </div>
+    </header>
+
+    <!-- ✅ Sidebar -->
+    <nav class="sidebar" id="sidebar">
+      <ul class="sidebar-link">
+        <li><a href="public-dashboard.html">📊 Dashboard</a></li>
+        <li><a href="public-incoming-task.html">📝 Incoming Task</a></li>
+        <li><a href="public-working-task.html">⏳ Working Task</a></li>
+        <li>
+          <a href="public-add-task.html" class="add-task">➕ Add Tasks</a>
+        </li>
+        <li>
+          <a href="public-report.html" class="public-report">📋 Report</a>
+        </li>
+        <li><a href="public-about.html">ℹ️ About</a></li>
+      </ul>
+    </nav>
+
+    <!-- ✅ Main Content -->
+    <div class="main-content" id="mainContent">
+      <!-- 📋 Report Sections -->
+      <h2>📋 Report Overview</h2>
+      <div class="card">
+        <div class="row report-header">
+          <h5 class="report-title" id="report-title">Congratulations</h5>
+          <h5 class="report-time" id="report-time">10:00 AM</h5>
+          <h5 class="report-date" id="report-date">25/08/2025</h5>
+        </div>
+        <p id="report-details">
+          As-salamu alaykum! Welcome to OpenEarn, your go-to platform for
+          earning money by completing simple online tasks. Whether you're
+          looking to make a little extra cash in your spare time or seeking a
+          more consistent income stream, OpenEarn has got you covered.
+        </p>
+      </div>
+      <div class="card">
+        <div class="row report-header">
+          <h5 class="report-title" id="report-title">Congratulations</h5>
+          <h5 class="report-time" id="report-time">10:00 AM</h5>
+          <h5 class="report-date" id="report-date">25/08/2025</h5>
+        </div>
+        <p id="report-details">This is the report overview section.</p>
+      </div>
+      <div class="report-input-group">
+        <textarea
+          class="report-textarea"
+          id="report-textarea"
+          rows="2"
+          placeholder="Enter detailed report here..."
+        >
+        </textarea>
+        <button id="submit-report-btn" class="submit-report-btn">
+          Submit Report
+        </button>
+      </div>
+    </div>
+
+    <script src="assets/js/public-root.js"></script>
+    <script src="assets/js/public-report.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </body>
+</html>

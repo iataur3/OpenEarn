@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>EarnTask All-in-One</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/public-login-signup-root.css" />
+  </head>
+  <body>
+    <!-- Your full HTML content remains unchanged -->
+    <header>
+      <nav>
+        <strong>OpenEarn</strong>
+        <a href="public-index.html" onclick="showSection('hero')">Home</a>
+        <a href="public-signup.html">Sign Up</a>
+        <a href="#">Login</a>
+      </nav>
+    </header>
+    <!-- Login Section -->
+    <form id="login-form">
+      <h2>Welcome Back</h2>
+      <label for="login-id">Email or Phone</label>
+      <input
+        type="text"
+        id="logid"
+        class="form-input"
+        placeholder="Enter your Email or Phone"
+      />
+
+      <label for="login-password">Password</label>
+      <div class="password-wrapper">
+        <input
+          type="password"
+          id="login-password"
+          class="login-password"
+          placeholder="Enter your Password"
+        />
+        <span
+          class="toggle-password"
+          onclick="togglePassword('login-password', this)"
+          >👁️</span
+        >
+      </div>
+      <div class="actions">
+        <button type="submit" class="index">Login</button>
+      </div>
+      <p>
+        <a href="public-signup.html"> Don’t have an account? Sign up </a>
+      </p>
+    </form>
+    <footer>&copy; 2025 EarnTask. All rights reserved.</footer>
+
+    <div id="toast"></div>
+    <script></script>
+    <script src="./assets/js/public-login.js"></script>
+  </body>
+</html>
