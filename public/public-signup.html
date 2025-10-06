@@ -280,9 +280,15 @@
         </table>
         <div class="actions">
           <a href="#" onclick="showSection('signup')">Edit Information</a>
-          <a href="public-login.html" class="index" title="View index"
+          <a
+            href="#"
+            onclick="submitToFirebase()"
+            class="index"
+            id="continue"
+            title="View index"
             >👤Continue</a
           >
+          <!-- <a href="public-login.html" class="index" id="continue" title="View index">👤Continue</a> -->
         </div>
       </div>
     </section>
@@ -290,6 +296,6 @@
     <footer>&copy; 2025 EarnTask. All rights reserved.</footer>
 
     <div id="toast"></div>
-    <script src="./assets/js/public-signup.js"></script>
+    <script type="module" src="./assets/js/public-signup.js"></script>
   </body>
 </html>

@@ -364,3 +364,61 @@ function loadConfirmation() {
   table.style.display = "table";
   noData.style.display = "none";
 }
+// 🚀 Submit to Firebase
+// window.submitToFirebase = async function () {
+//   const raw = localStorage.getItem("signupData");
+//   if (!raw) {
+//     showToast("No signup data found.");
+//     return;
+//   }
+
+//   const data = JSON.parse(raw);
+
+//   try {
+//     const res = await fetch("/api/signup", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify(data),
+//     });
+
+//     const result = await res.json();
+//     if (result.success) {
+//       showToast("Signup data saved!");
+//       setTimeout(() => {
+//         window.location.href = "public-login.html";
+//       }, 1500);
+//     } else {
+//       showToast("Failed to save data.");
+//     }
+//   } catch (err) {
+//     console.error(err);
+//     showToast("Error connecting to server.");
+//   }
+// };
+
+// functions/src/signup.js
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+const express = require("express");
+
+admin.initializeApp();
+
+const app = express();
+app.use(express.json()); // ✅ Body parser
+
+app.post("/submitSignup", async (req, res) => {
+  try {
+    const data = req.body;
+    if (!data.name || !data.email || !data.phone) {
+      return res.status(400).send({ success: false, error: "Missing fields" });
+    }
+
+    await admin.firestore().collection("signups").add(data);
+    res.send({ success: true });
+  } catch (error) {
+    console.error("Signup error:", error);
+    res.status(500).send({ success: false });
+  }
+});
+
+exports.submitSignup = functions.https.onRequest(app);

@@ -16,6 +16,10 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.0",
+<<<<<<< HEAD
+=======
+    "eslint": "^8.56.0",
+>>>>>>> 88f99f7 (add initial project files)
     "vite": "^6.3.6"
   },
   "browserslist": {
