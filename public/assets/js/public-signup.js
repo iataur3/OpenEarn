@@ -396,29 +396,56 @@ function loadConfirmation() {
 //   }
 // };
 
-// functions/src/signup.js
-const functions = require("firebase-functions");
-const admin = require("firebase-admin");
-const express = require("express");
+// // public/assets/js/public-signup.js
+// const functions = require("firebase-functions");
+// const admin = require("firebase-admin");
+// const express = require("express");
 
-admin.initializeApp();
+// admin.initializeApp();
 
-const app = express();
-app.use(express.json()); // ✅ Body parser
+// const app = express();
+// app.use(express.json()); // ✅ Body parser
 
-app.post("/submitSignup", async (req, res) => {
-  try {
-    const data = req.body;
-    if (!data.name || !data.email || !data.phone) {
-      return res.status(400).send({ success: false, error: "Missing fields" });
-    }
+// app.post("/submitSignup", async (req, res) => {
+//   try {
+//     const data = req.body;
+//     if (!data.name || !data.email || !data.phone) {
+//       return res.status(400).send({ success: false, error: "Missing fields" });
+//     }
 
-    await admin.firestore().collection("signups").add(data);
-    res.send({ success: true });
-  } catch (error) {
-    console.error("Signup error:", error);
-    res.status(500).send({ success: false });
-  }
-});
+//     await admin.firestore().collection("signups").add(data);
+//     res.send({ success: true });
+//   } catch (error) {
+//     console.error("Signup error:", error);
+//     res.status(500).send({ success: false });
+//   }
+// });
 
-exports.submitSignup = functions.https.onRequest(app);
+// exports.submitSignup = functions.https.onRequest(app);
+
+// public/assets/js/public-signup.js
+function submitToFirebase() {
+  const data = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+  };
+
+  fetch("/api/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .then((response) => {
+      if (response.success) {
+        alert("Signup successful!");
+      } else {
+        alert("Signup failed.");
+      }
+    })
+    .catch((err) => {
+      console.error("Error:", err);
+      alert("Error submitting form.");
+    });
+}
