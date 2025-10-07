@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>EarnTask All-in-One</title>
+    <title>Open Earn Signup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/public-login-signup-root.css" />
   </head>
@@ -10,7 +10,7 @@
     <!-- Your full HTML content remains unchanged -->
     <header>
       <nav>
-        <strong>OpenEarn</strong>
+        <strong>Open Earn</strong>
         <a href="public-index.html">Home</a>
         <a href="#" onclick="showSection('signup')">Sign Up</a>
         <a href="public-login.html">Login</a>
@@ -280,9 +280,15 @@
         </table>
         <div class="actions">
           <a href="#" onclick="showSection('signup')">Edit Information</a>
-          <a href="public-login.html" class="index" title="View index"
+          <a
+            href="#"
+            onclick="submitToFirebase()"
+            class="index"
+            id="continue"
+            title="View index"
             >👤Continue</a
           >
+          <!-- <a href="public-login.html" class="index" id="continue" title="View index">👤Continue</a> -->
         </div>
       </div>
     </section>
@@ -290,6 +296,6 @@
     <footer>&copy; 2025 EarnTask. All rights reserved.</footer>
 
     <div id="toast"></div>
-    <script src="./assets/js/public-signup.js"></script>
+    <script type="module" src="./assets/js/public-signup.js"></script>
   </body>
 </html>

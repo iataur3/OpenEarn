@@ -1,4 +1,4 @@
-// 🌍 s-country autocomplete + dialing code
+// public/assets/js/public-signup.js
 document.addEventListener("DOMContentLoaded", function () {
   const countryInput = document.getElementById("s-country");
   const suggestionBox = document.getElementById("s-country_suggestions");
@@ -28,179 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
     "Benin",
     "Bhutan",
     "Bolivia",
-    "Bosnia and Herzegovina",
-    "Botswana",
-    "Brazil",
-    "Brunei",
-    "Bulgaria",
-    "Burkina Faso",
-    "Burundi",
-    "Cabo Verde",
-    "Cambodia",
-    "Cameroon",
-    "Canada",
-    "Central African Republic",
-    "Chad",
-    "Chile",
-    "China",
-    "Colombia",
-    "Comoros",
-    "Congo (Brazzaville)",
-    "Congo (Kinshasa)",
-    "Costa Rica",
-    "Croatia",
-    "Cuba",
-    "Cyprus",
-    "Czech Republic",
-    "Denmark",
-    "Djibouti",
-    "Dominica",
-    "Dominican Republic",
-    "Ecuador",
-    "Egypt",
-    "El Salvador",
-    "Equatorial Guinea",
-    "Eritrea",
-    "Estonia",
-    "Eswatini",
-    "Ethiopia",
-    "Fiji",
-    "Finland",
-    "France",
-    "Gabon",
-    "Gambia",
-    "Georgia",
-    "Germany",
-    "Ghana",
-    "Greece",
-    "Grenada",
-    "Guatemala",
-    "Guinea",
-    "Guinea-Bissau",
-    "Guyana",
-    "Haiti",
-    "Honduras",
-    "Hungary",
-    "Iceland",
-    "India",
-    "Indonesia",
-    "Iran",
-    "Iraq",
-    "Ireland",
-    "Italy",
-    "Jamaica",
-    "Japan",
-    "Jordan",
-    "Kazakhstan",
-    "Kenya",
-    "Kiribati",
-    "Kuwait",
-    "Kyrgyzstan",
-    "Laos",
-    "Latvia",
-    "Lebanon",
-    "Lesotho",
-    "Liberia",
-    "Libya",
-    "Liechtenstein",
-    "Lithuania",
-    "Luxembourg",
-    "Madagascar",
-    "Malawi",
-    "Malaysia",
-    "Maldives",
-    "Mali",
-    "Malta",
-    "Marshall Islands",
-    "Mauritania",
-    "Mauritius",
-    "Mexico",
-    "Micronesia",
-    "Moldova",
-    "Monaco",
-    "Mongolia",
-    "Montenegro",
-    "Morocco",
-    "Mozambique",
-    "Myanmar",
-    "Namibia",
-    "Nauru",
-    "Nepal",
-    "Netherlands",
-    "New Zealand",
-    "Nicaragua",
-    "Niger",
-    "Nigeria",
-    "North Korea",
-    "North Macedonia",
-    "Norway",
-    "Oman",
-    "Pakistan",
-    "Palau",
-    "Palestine",
-    "Panama",
-    "Papua New Guinea",
-    "Paraguay",
-    "Peru",
-    "Philippines",
-    "Poland",
-    "Portugal",
-    "Qatar",
-    "Romania",
-    "Russia",
-    "Rwanda",
-    "Saint Kitts and Nevis",
-    "Saint Lucia",
-    "Saint Vincent and the Grenadines",
-    "Samoa",
-    "San Marino",
-    "Sao Tome and Principe",
-    "Saudi Arabia",
-    "Senegal",
-    "Serbia",
-    "Seychelles",
-    "Sierra Leone",
-    "Singapore",
-    "Slovakia",
-    "Slovenia",
-    "Solomon Islands",
-    "Somalia",
-    "South Africa",
-    "South Korea",
-    "South Sudan",
-    "Spain",
-    "Sri Lanka",
-    "Sudan",
-    "Suriname",
-    "Sweden",
-    "Switzerland",
-    "Syria",
-    "Taiwan",
-    "Tajikistan",
-    "Tanzania",
-    "Thailand",
-    "Timor-Leste",
-    "Togo",
-    "Tonga",
-    "Trinidad and Tobago",
-    "Tunisia",
-    "Turkey",
-    "Turkmenistan",
-    "Tuvalu",
-    "Uganda",
-    "Ukraine",
-    "United Arab Emirates",
-    "United Kingdom",
-    "United States of America",
-    "Uruguay",
-    "Uzbekistan",
-    "Vanuatu",
-    "Vatican City",
-    "Venezuela",
-    "Vietnam",
-    "Yemen",
-    "Zambia",
-    "Zimbabwe",
   ];
 
   const staticDialingCodes = {
@@ -537,3 +364,61 @@ function loadConfirmation() {
   table.style.display = "table";
   noData.style.display = "none";
 }
+// 🚀 Submit to Firebase
+// window.submitToFirebase = async function () {
+//   const raw = localStorage.getItem("signupData");
+//   if (!raw) {
+//     showToast("No signup data found.");
+//     return;
+//   }
+
+//   const data = JSON.parse(raw);
+
+//   try {
+//     const res = await fetch("/api/signup", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify(data),
+//     });
+
+//     const result = await res.json();
+//     if (result.success) {
+//       showToast("Signup data saved!");
+//       setTimeout(() => {
+//         window.location.href = "public-login.html";
+//       }, 1500);
+//     } else {
+//       showToast("Failed to save data.");
+//     }
+//   } catch (err) {
+//     console.error(err);
+//     showToast("Error connecting to server.");
+//   }
+// };
+
+// functions/src/signup.js
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+const express = require("express");
+
+admin.initializeApp();
+
+const app = express();
+app.use(express.json()); // ✅ Body parser
+
+app.post("/submitSignup", async (req, res) => {
+  try {
+    const data = req.body;
+    if (!data.name || !data.email || !data.phone) {
+      return res.status(400).send({ success: false, error: "Missing fields" });
+    }
+
+    await admin.firestore().collection("signups").add(data);
+    res.send({ success: true });
+  } catch (error) {
+    console.error("Signup error:", error);
+    res.status(500).send({ success: false });
+  }
+});
+
+exports.submitSignup = functions.https.onRequest(app);
