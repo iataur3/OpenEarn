@@ -121,12 +121,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // async function validatePhoneNumber(countryName, code, number) {
+  //   const fullNumber = code + number;
+  //   const pattern = phonePatterns[countryName];
+  //   if (pattern?.test(fullNumber)) return true;
+  //   if (!/^\+\d{10,14}$/.test(fullNumber)) return false;
+  //   return await validatePhoneOnline(fullNumber, countryName);
+  // }
+
   async function validatePhoneNumber(countryName, code, number) {
     const fullNumber = code + number;
     const pattern = phonePatterns[countryName];
-    if (pattern?.test(fullNumber)) return true;
-    if (!/^\+\d{10,14}$/.test(fullNumber)) return false;
-    return await validatePhoneOnline(fullNumber, countryName);
+    if (pattern?.test(fullNumber)) return true; // Local validation
+    if (!/^\+\d{10,14}$/.test(fullNumber)) return false; // Basic format check
+    try {
+      return await validatePhoneOnline(fullNumber, countryName); // API validation
+    } catch (err) {
+      console.warn("Phone validation failed, using fallback:", err.message);
+      return false; // Fallback to invalid
+    }
   }
 
   countryInput.addEventListener("input", async function () {
@@ -316,8 +329,19 @@ function togglePassword(id, icon) {
   const input = document.getElementById(id);
   const isHidden = input.type === "password";
   input.type = isHidden ? "text" : "password";
-  icon.textContent = isHidden ? "👁️" : "👁️";
+  icon.textContent = isHidden ? "🔒" : "👁️";
 }
+
+// function togglePassword(id, icon) {
+//   const input = document.getElementById(id);
+//   if (!input) {
+//     console.error(`Element with id "${id}" not found.`);
+//     return;
+//   }
+//   const isHidden = input.type === "password";
+//   input.type = isHidden ? "text" : "password";
+//   icon.textContent = isHidden ? "🔒" : "👁️"; // Update icon dynamically
+// }
 
 // 📋 Confirmation loader
 function loadConfirmation() {
@@ -364,37 +388,6 @@ function loadConfirmation() {
   table.style.display = "table";
   noData.style.display = "none";
 }
-// 🚀 Submit to Firebase
-// window.submitToFirebase = async function () {
-//   const raw = localStorage.getItem("signupData");
-//   if (!raw) {
-//     showToast("No signup data found.");
-//     return;
-//   }
-
-//   const data = JSON.parse(raw);
-
-//   try {
-//     const res = await fetch("/api/signup", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(data),
-//     });
-
-//     const result = await res.json();
-//     if (result.success) {
-//       showToast("Signup data saved!");
-//       setTimeout(() => {
-//         window.location.href = "public-login.html";
-//       }, 1500);
-//     } else {
-//       showToast("Failed to save data.");
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     showToast("Error connecting to server.");
-//   }
-// };
 
 // // public/assets/js/public-signup.js
 // const functions = require("firebase-functions");
@@ -422,30 +415,3 @@ function loadConfirmation() {
 // });
 
 // exports.submitSignup = functions.https.onRequest(app);
-
-// public/assets/js/public-signup.js
-function submitToFirebase() {
-  const data = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    phone: document.getElementById("phone").value,
-  };
-
-  fetch("/api/signup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  })
-    .then((res) => res.json())
-    .then((response) => {
-      if (response.success) {
-        alert("Signup successful!");
-      } else {
-        alert("Signup failed.");
-      }
-    })
-    .catch((err) => {
-      console.error("Error:", err);
-      alert("Error submitting form.");
-    });
-}
