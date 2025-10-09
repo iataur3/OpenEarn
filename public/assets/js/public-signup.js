@@ -1,5 +1,12 @@
-// public/assets/js/public-signup.js
-document.addEventListener("DOMContentLoaded", function () {
+import {
+  fetchCountries,
+  fetchDialingCode,
+  getcountryISO,
+  validatePhoneOnline,
+  validatePhoneNumber,
+} from "./utils.js";
+
+document.addEventListener("DOMContentLoaded", async function () {
   const countryInput = document.getElementById("s-country");
   const suggestionBox = document.getElementById("s-country_suggestions");
   const countryCodePrefix = document.getElementById("s-countryCodePrefix");
@@ -55,92 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let countryList = [];
   const phoneValidationCache = {};
 
-  async function fetchCountries() {
-    try {
-      const res = await fetch("https://restcountries.com/v3.1/all");
-      if (!res.ok) throw new Error("API failed");
-      const data = await res.json();
-      countryList = data.map((c) => c.name.common).sort();
-    } catch (err) {
-      console.warn("Using static fallback:", err.message);
-      countryList = staticCountries;
-    }
-  }
-
-  async function fetchDialingCode(name) {
-    if (staticDialingCodes[name]) return staticDialingCodes[name];
-    try {
-      const res = await fetch(
-        `https://restcountries.com/v3.1/name/${encodeURIComponent(
-          name
-        )}?fullText=true`
-      );
-      if (!res.ok) throw new Error("Dialing code API failed");
-      const data = await res.json();
-      return data[0]?.idd?.root + (data[0]?.idd?.suffixes?.[0] || "") || "";
-    } catch (err) {
-      console.warn("Fallback dialing code:", err.message);
-      return "";
-    }
-  }
-
-  async function getcountryISO(name) {
-    if (countryISOMap[name]) return countryISOMap[name];
-    try {
-      const res = await fetch(
-        `https://restcountries.com/v3.1/name/${encodeURIComponent(
-          name
-        )}?fullText=true`
-      );
-      if (!res.ok) throw new Error("ISO API failed");
-      const data = await res.json();
-      return data[0]?.cca2 || "BD";
-    } catch (err) {
-      console.warn("Fallback ISO:", err.message);
-      return "BD";
-    }
-  }
-
-  async function validatePhoneOnline(fullNumber, countryName) {
-    if (phoneValidationCache[fullNumber] !== undefined)
-      return phoneValidationCache[fullNumber];
-    try {
-      const API_KEY = "5b422e31d9734c7ca1d61bb93b29ddfb";
-      const countryCode = await getcountryISO(countryName);
-      const res = await fetch(
-        `https://phonevalidation.abstractapi.com/v1/?api_key=${API_KEY}&phone=${fullNumber}&country_code=${countryCode}`
-      );
-      const data = await res.json();
-      const isValid = data.valid === true;
-      phoneValidationCache[fullNumber] = isValid;
-      return isValid;
-    } catch (err) {
-      console.warn("API validation failed:", err.message);
-      phoneValidationCache[fullNumber] = false;
-      return false;
-    }
-  }
-
-  // async function validatePhoneNumber(countryName, code, number) {
-  //   const fullNumber = code + number;
-  //   const pattern = phonePatterns[countryName];
-  //   if (pattern?.test(fullNumber)) return true;
-  //   if (!/^\+\d{10,14}$/.test(fullNumber)) return false;
-  //   return await validatePhoneOnline(fullNumber, countryName);
-  // }
-
-  async function validatePhoneNumber(countryName, code, number) {
-    const fullNumber = code + number;
-    const pattern = phonePatterns[countryName];
-    if (pattern?.test(fullNumber)) return true; // Local validation
-    if (!/^\+\d{10,14}$/.test(fullNumber)) return false; // Basic format check
-    try {
-      return await validatePhoneOnline(fullNumber, countryName); // API validation
-    } catch (err) {
-      console.warn("Phone validation failed, using fallback:", err.message);
-      return false; // Fallback to invalid
-    }
-  }
+  countryList = await fetchCountries(staticCountries);
 
   countryInput.addEventListener("input", async function () {
     const query = this.value.toLowerCase();
@@ -167,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
         countryInput.value = name;
         suggestionBox.innerHTML = "";
         suggestionBox.style.display = "none";
-        const code = await fetchDialingCode(name);
+        const code = await fetchDialingCode(name, staticDialingCodes);
         countryCodePrefix.textContent = code;
       });
       suggestionBox.appendChild(div);
@@ -190,13 +112,17 @@ document.addEventListener("DOMContentLoaded", function () {
       errorPhone.textContent = "Please select a country and enter phone number";
       return;
     }
-    const isValid = await validatePhoneNumber(countryName, code, number);
+    const isValid = await validatePhoneNumber(
+      countryName,
+      code,
+      number,
+      phonePatterns,
+      validatePhoneOnline
+    );
     errorPhone.textContent = isValid
       ? ""
       : `Invalid phone number: ${code}${number}`;
   });
-
-  fetchCountries();
   showSection("signup");
 });
 
@@ -208,8 +134,8 @@ function showSection(id) {
   document.getElementById(id).classList.add("active");
   window.scrollTo(0, 0);
   if (id === "confirmation") loadConfirmation();
-  // if (id === "login") bindLoginToggle();
 }
+window.showSection = showSection; // Exposing to global scope
 
 // 🍞 Toast
 function showToast(msg) {
@@ -281,15 +207,17 @@ document
         data[id] = value;
       }
     });
-    /*
-      if (data.phone && !/^01[3-9]\d{8}$/.test(data.phone)) {
-        const input = document.getElementById("phone");
-        const errorDiv = document.getElementById("error_phone");
-        errorDiv.textContent = "Invalid phone number";
-        input.classList.add("input-error");
-        hasError = true;
-      }
-        */
+
+    // const code = countryCodePrefix.textContent.trim();
+    // const number = phoneInput.value.trim();
+    // const countryName = countryInput.value.trim();
+
+    // if (!code || !number || !countryName) {
+    //   errorPhone.textContent = "Please select a country and enter phone number";
+    //   return;
+    // }
+
+    // data.phone = `${code}${number}`; // Save phone number with country code
 
     if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
       const input = document.getElementById("email");
@@ -299,10 +227,10 @@ document
       hasError = true;
     }
 
-    if (data.password.length < 8) {
+    if (data.password.length < 4) {
       const input = document.getElementById("password");
       const errorDiv = document.getElementById("error_password");
-      errorDiv.textContent = "Password must be at least 8 characters";
+      errorDiv.textContent = "Password must be at least 4 characters";
       input.classList.add("input-error");
       hasError = true;
     }
@@ -321,41 +249,38 @@ document
     }
 
     localStorage.setItem("signupData", JSON.stringify(data));
-    showToast("Signup successful!");
+    showToast("Welcome");
     setTimeout(() => showSection("confirmation"), 1500);
   });
 
+// 👁️ Password toggle icon
 function togglePassword(id, icon) {
   const input = document.getElementById(id);
   const isHidden = input.type === "password";
   input.type = isHidden ? "text" : "password";
   icon.textContent = isHidden ? "🔒" : "👁️";
 }
-
-// function togglePassword(id, icon) {
-//   const input = document.getElementById(id);
-//   if (!input) {
-//     console.error(`Element with id "${id}" not found.`);
-//     return;
-//   }
-//   const isHidden = input.type === "password";
-//   input.type = isHidden ? "text" : "password";
-//   icon.textContent = isHidden ? "🔒" : "👁️"; // Update icon dynamically
-// }
+window.togglePassword = togglePassword;
 
 // 📋 Confirmation loader
 function loadConfirmation() {
   const raw = localStorage.getItem("signupData");
+  let data = {};
+  try {
+    data = JSON.parse(raw) || {};
+  } catch (err) {
+    console.warn("Invalid signup data:", err.message);
+  }
+
   const table = document.getElementById("dataTable");
   const noData = document.getElementById("noData");
 
-  if (!raw) {
+  if (!Object.keys(data).length) {
     noData.style.display = "block";
     table.style.display = "none";
     return;
   }
 
-  const data = JSON.parse(raw);
   const keys = [
     "s-full-name",
     "s-father-name",
