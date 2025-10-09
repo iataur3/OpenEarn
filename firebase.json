@@ -1,29 +1,19 @@
 {
-  "hosting": [
-    {
-      "target": "main",
-      "public": "build",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "rewrites": [
-        {
-          "source": "/api/signup",
-          "function": "submitSignup"
-        },
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
-    },
-    {
-      "target": "admin",
-      "public": "admin-panel"
-    },
-    {
-      "target": "moderator",
-      "public": "moderator-panel"
-    }
-  ],
+  "hosting": {
+    "target": "main",
+    "public": "build",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "/api/signup",
+        "function": "submitSignup"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
   "functions": {
     "source": "functions",
     "codebase": "default",
