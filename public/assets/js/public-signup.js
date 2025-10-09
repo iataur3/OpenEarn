@@ -315,28 +315,28 @@ function loadConfirmation() {
 }
 
 // // public/assets/js/public-signup.js
-// const functions = require("firebase-functions");
-// const admin = require("firebase-admin");
-// const express = require("express");
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+const express = require("express");
 
-// admin.initializeApp();
+admin.initializeApp();
 
-// const app = express();
-// app.use(express.json()); // ✅ Body parser
+const app = express();
+app.use(express.json()); // ✅ Body parser
 
-// app.post("/submitSignup", async (req, res) => {
-//   try {
-//     const data = req.body;
-//     if (!data.name || !data.email || !data.phone) {
-//       return res.status(400).send({ success: false, error: "Missing fields" });
-//     }
+app.post("/submitSignup", async (req, res) => {
+  try {
+    const data = req.body;
+    if (!data.name || !data.email || !data.phone) {
+      return res.status(400).send({ success: false, error: "Missing fields" });
+    }
 
-//     await admin.firestore().collection("signups").add(data);
-//     res.send({ success: true });
-//   } catch (error) {
-//     console.error("Signup error:", error);
-//     res.status(500).send({ success: false });
-//   }
-// });
+    await admin.firestore().collection("signups").add(data);
+    res.send({ success: true });
+  } catch (error) {
+    console.error("Signup error:", error);
+    res.status(500).send({ success: false });
+  }
+});
 
-// exports.submitSignup = functions.https.onRequest(app);
+exports.submitSignup = functions.https.onRequest(app);
