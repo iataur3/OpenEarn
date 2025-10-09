@@ -66,29 +66,39 @@ OpenEarn/
 │   ├── folderStructure.html
 │   └── README.md
 ├── functions/
-│   ├── index.js
+│   ├── config/
+│   │   └── db.json
 │   ├── controllers/
 │   │   ├── authController.js
 │   │   ├── taskController.js
-│   │   └── user-controller.js
+│   │   └── userController.js
 │   ├── middleware/
 │   │   ├── auth/
 │   │   │   └── authMiddleware.js
-│   │   └── roles/
-│   │       └── roleMiddleware.js
+│   │   └── roleMiddleware.js
+│   │── node_models/
 │   ├── routes/
 │   │   ├── authRoutes.js
-│   │   ├── taskRoutes.js
-│   │   ├── userRoutes.js
 │   │   ├── blockDevice.js
-│   │   └── loginLogs.js  
+│   │   ├── loginLogs.js
+│   │   ├── taskRoutes.js
+│   │   └── userRoutes.js  
+│   ├── src/
+│   │   └── signup.js
 │   ├── utils/
 │   │   ├── geoLocation.js
 │   │   └── logger.js
+│   ├── .env
+│   ├── .eslintrc.js
+│   ├── .gitignore
+│   ├── eslint.config.mjs
+│   ├── firebase-debug.log
 │   ├── firebase.js
 │   ├── firestore.rules
-│   ├── README.md
-│   └── .env
+│   ├── index.js
+│   ├── package-lock.json
+│   ├── package.json
+│   └── README.md
 ├── logs/
 │   ├── access.log
 │   └── error.log
