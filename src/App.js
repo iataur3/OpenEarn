@@ -4,7 +4,7 @@ import React from "react";
 function App() {
   return (
     <div>
-      <h1>Welcome to OpenEarn</h1>
+      <h1>Welcome to Open Earn</h1>
     </div>
   );
 }

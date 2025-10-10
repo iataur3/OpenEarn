@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard - EarnTask Admin</title>
+    <link rel="stylesheet" href="./assets/css/moderator.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="left">
+        <span class="menu-btn" id="menuBtn">&#9776;</span>
+        <h3>Dashboard</h3>
+      </div>
+      <div class="right">
+        <input type="text" id="searchInput" placeholder="Search..." />
+        <button id="searchBtn">Search</button>
+        <button id="nightBtn">🌙</button>
+      </div>
+    </div>
+    <!-- sidebar.html -->
+    <div class="sidebar" id="sidebar">
+      <a href="mDashboard.html" data-role="admin,moderator">Dashboard</a>
+      <a href="moderatorDT.html" data-role="admin,moderator">G M D Tasks</a>
+      <a href="user-worked-t-incoming.html" data-role="admin,moderator"
+        >User W Tasks</a
+      >
+      <a href="mReports.html" data-role="admin,moderator">Reports</a>
+      <a href="moderator-index.html" data-role="admin,moderator">Logout</a>
+    </div>
+    <div class="main-content" id="mainContent">
+      <div class="content-area" id="contentArea">
+        <h2>Moderator Dashboard Overview</h2>
+        <div class="dashboard-cards">
+          <div class="card">
+            Total Tasks: <span id="userWorkingTotalTasks">19</span>
+          </div>
+          <div class="card">
+            ✅ Completed: <span id="userWorkingCompletedTasks">12</span>
+          </div>
+          <div class="card">
+            ⏳ Pending: <span id="userWorkingPendingTasks">5</span>
+          </div>
+          <div class="card">
+            ❌ Rejected: <span id="userWorkingRejectedTasks">2</span>
+          </div>
+          <div class="card">
+            💰 Earnings: <span id="userWorkingEarningsAmount">$48.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./assets/js/moderator-root.js"></script>
+  </body>
+</html>

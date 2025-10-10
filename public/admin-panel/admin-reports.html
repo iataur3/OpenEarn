@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Reports - EarnTask Admin</title>
+    <link rel="stylesheet" href="./assets/css/admin.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="left">
+        <span class="menu-btn" id="menuBtn">&#9776;</span>
+        <h3>Reports</h3>
+      </div>
+      <div class="right">
+        <input type="text" id="searchInput" placeholder="Search reports..." />
+        <button id="searchBtn">Search</button>
+        <button id="nightBtn">🌙</button>
+      </div>
+    </div>
+    <!-- sidebar.html -->
+    <div class="sidebar" id="sidebar">
+      <a href="admin-dashboard.html" data-role="admin">Dashboard</a>
+      <a href="user-control-g-moderator.html" data-role="admin"
+        >Users Control</a
+      >
+      <a href="running-task-incoming.html" data-role="admin">Running Tasks</a>
+      <a href="admin-working-t-incoming.html" data-role="admin"
+        >Admin Working</a
+      >
+      <a href="moderator-d-t-incoming.html" data-role="admin"
+        >Moderator Defined</a
+      >
+      <a href="user-worked-t-incoming.html" data-role="admin">User Worked</a>
+      <a href="admin-reports.html" data-role="admin">Reports</a>
+      <a href="ads.html" data-role="admin">Ads</a>
+      <a href="admin-p-l-i.html" data-role="admin">Login Info</a>
+      <a href="admin-settings.html" data-role="admin">Settings</a>
+      <a href="admin-index.html" data-role="admin">Logout</a>
+    </div>
+    <!-- main-content -->
+    <div class="main-content">
+      <div class="content-area" id="contentArea">
+        <h2>Reports</h2>
+        <div class="dashboard-cards">
+          <div class="card">Total: <span id="userTR">19</span></div>
+          <div class="card">✅ Completed: <span id="userRC">12</span></div>
+          <div class="card">✅ Working: <span id="userRW">12</span></div>
+          <div class="card">⏳ Pending: <span id="userRP">5</span></div>
+        </div>
+        <h2>Report List</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Assigned To</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Title</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>John Doe</td>
+              <td>2025-08-18</td>
+              <td>10:00 AM</td>
+              <td>Why task is rejected</td>
+              <td>Pending</td>
+              <td>
+                <button class="action completed">Complete</button>
+                <button class="action working">Working</button>
+                <button class="action pending">Pending</button>
+                <button class="action deleted">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Jane Smith</td>
+              <td>2025-08-17</td>
+              <td>09:30 AM</td>
+              <td>Task Pending</td>
+              <td>Completed</td>
+              <td>
+                <button class="action completed">Complete</button>
+                <button class="action working">Working</button>
+                <button class="action pending">Pending</button>
+                <button class="action deleted">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="assets/js/admin-root.js"></script>
+    <script></script>
+  </body>
+</html>

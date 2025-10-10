@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tasks - EarnTask Admin</title>
+    <link rel="stylesheet" href="./assets/css/moderator.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="left">
+        <span class="menu-btn" id="menuBtn">&#9776;</span>
+        <h3>Tasks</h3>
+      </div>
+      <div class="right">
+        <input type="text" id="searchInput" placeholder="Search tasks..." />
+        <button id="searchBtn">Search</button>
+        <button id="nightBtn">🌙</button>
+      </div>
+    </div>
+    <!-- sidebar.html -->
+    <div class="sidebar" id="sidebar">
+      <a href="mDashboard.html" data-role="admin,moderator">Dashboard</a>
+      <a href="moderatorDT.html" data-role="admin,moderator">G M D Tasks</a>
+      <a href="user-worked-t-incoming.html" data-role="admin,moderator"
+        >User W Tasks</a
+      >
+      <a href="mReports.html" data-role="admin,moderator">Reports</a>
+      <a href="moderator-index.html" data-role="admin,moderator">Logout</a>
+    </div>
+    <!-- main-content -->
+    <div class="main-content">
+      <div class="content-area" id="contentArea">
+        <h2>User Worked Task Overview</h2>
+        <div class="dashboard-cards">
+          <div class="card">
+            Total Tasks: <span id="user-worked-t-incoming.htmlT">19</span>
+          </div>
+          <div class="card">✅ Approved: <span id="userWCT">12</span></div>
+          <div class="card">⏳ Pending: <span id="userWPT">5</span></div>
+          <div class="card">❌ Rejected: <span id="userWRT">2</span></div>
+        </div>
+        <h2>Task List</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Assigned To</th>
+              <th>Title</th>
+              <th>Proof</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>John Doe</td>
+              <td>Youtube Video</td>
+              <td>Screenshort</td>
+              <td>
+                <button class="action approve">Approve</button>
+                <button class="action pending">Pending</button>
+                <button class="action reject">Reject</button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Jane Smith</td>
+              <td>Twitter Photo</td>
+              <td>Screenshort</td>
+              <td>
+                <button class="action approve">Approve</button>
+                <button class="action pending">Pending</button>
+                <button class="action reject">Reject</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="./assets/js/moderator-root.js"></script>
+  </body>
+</html>

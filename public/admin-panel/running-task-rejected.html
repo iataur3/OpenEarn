@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tasks - EarnTask Admin</title>
+    <link rel="stylesheet" href="./assets/css/admin.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="left">
+        <span class="menu-btn" id="menuBtn">&#9776;</span>
+        <h3>Running Tasks Control</h3>
+      </div>
+      <div class="right">
+        <input type="text" id="searchInput" placeholder="Search tasks..." />
+        <button id="searchBtn">Search</button>
+        <button id="nightBtn">🌙</button>
+      </div>
+    </div>
+    <!-- sidebar.html -->
+    <div class="sidebar" id="sidebar">
+      <a href="admin-dashboard.html" data-role="admin">Dashboard</a>
+      <a href="user-control-g-moderator.html" data-role="admin"
+        >Users Control</a
+      >
+      <a
+        href="running-task-incoming.html"
+        data-role="admin"
+        data-section="running-task"
+        >Running Tasks</a
+      >
+      <a href="admin-working-t-incoming.html" data-role="admin"
+        >Admin Working</a
+      >
+      <a href="moderator-d-t-incoming.html" data-role="admin"
+        >Moderator Defined</a
+      >
+      <a href="user-worked-t-incoming.html" data-role="admin">User Worked</a>
+      <a href="admin-reports.html" data-role="admin">Reports</a>
+      <a href="ads.html" data-role="admin">Ads</a>
+      <a href="admin-p-l-i.html" data-role="admin">Login Info</a>
+      <a href="admin-settings.html" data-role="admin">Settings</a>
+      <a href="admin-index.html" data-role="admin">Logout</a>
+    </div>
+    <!-- main-content -->
+    <div class="main-content">
+      <h2>Running Task Overview</h2>
+      <div class="status-buttons s">
+        <a
+          href="running-task-incoming.html"
+          class="status-buttons incoming"
+          id="running-task-incoming"
+          >⏳ Incoming: <span id="incoming">15</span></a
+        >
+        <a
+          href="running-task-pending.html"
+          class="status-buttons pending"
+          id="running-task-pending"
+          >⏳ Pending: <span id="pending">5</span></a
+        >
+        <a
+          href="running-task-running.html"
+          class="status-buttons running"
+          id="running-task-running"
+        >
+          ⏳ Running: <span id="running">5</span>
+        </a>
+        <a
+          href="running-task-completed.html"
+          class="status-buttons completed"
+          id="running-task-completed"
+        >
+          ✅ Completed: <span id="completed">12</span>
+        </a>
+        <a
+          href="running-task-rejected.html"
+          class="status-buttons rejected"
+          id="running-task-rejected"
+          data-section="running-task"
+        >
+          ❌ Rejected: <span id="rejected">2</span>
+        </a>
+      </div>
+      <h2>Rejected Task List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Assigned To</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Upload Video</td>
+            <td>John Doe</td>
+            <td>Rejected</td>
+            <td>
+              <button class="action preview">Preview</button>
+              <button class="action deleted">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Complete Survey</td>
+            <td>Jane Smith</td>
+            <td>Rejected</td>
+            <td>
+              <button class="action preview">Preview</button>
+              <button class="action deleted">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="assets/js/admin-root.js"></script>
+    <script src="./assets/js/running-task.js"></script>
+  </body>
+</html>

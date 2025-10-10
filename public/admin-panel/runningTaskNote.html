@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tasks - EarnTask Admin</title>
+    <link rel="stylesheet" href="./assets/css/admin.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="left">
+        <span class="menu-btn" id="menuBtn">&#9776;</span>
+        <h3>Running Tasks Control</h3>
+      </div>
+      <div class="right">
+        <input type="text" id="searchInput" placeholder="Search tasks..." />
+        <button id="searchBtn">Search</button>
+        <button id="nightBtn">🌙</button>
+      </div>
+    </div>
+    <!-- sidebar.html -->
+    <div class="sidebar" id="sidebar">
+      <a href="aDashboard.html" data-role="admin">Dashboard</a>
+      <a href="userControl.html" data-role="admin">Users Control</a>
+      <a href="runningTaskIncoming.html" data-role="admin">Running Tasks</a>
+      <a href="adminWT.html" data-role="admin">Admin Working Tasks</a>
+      <a href="moderatorDT.html" data-role="admin">Moderator Defined Tasks</a>
+      <a href="userWT.html" data-role="admin">User Worked Tasks</a>
+      <a href="reportsA.html" data-role="admin">Reports</a>
+      <a href="ads.html" data-role="admin">Ads</a>
+      <a href="adminPLI.html" data-role="admin">Login Info</a>
+      <a href="admin-settings.html" data-role="admin">Settings</a>
+      <a href="admin-index.html" data-role="admin">Logout</a>
+    </div>
+    <!-- main-content -->
+    <div class="main-content">
+      <h2>Running Task Overview</h2>
+      <div class="status-buttons">
+        <a href="runningTaskIncoming.html" class="status-button runningIncoming"
+          >⏳ Incoming: <span id="runningIncoming">15</span></a
+        >
+        <a href="runningTaskPending.html" class="status-button runningPending"
+          >⏳ Pending: <span id="runningPending">5</span></a
+        >
+        <a href="runningTaskRunning.html" class="status-button runningRunning">
+          ⏳ Running: <span id="runningRunning">5</span>
+        </a>
+        <a
+          href="runningTaskCompleted.html"
+          class="status-button runningCompleted"
+        >
+          ✅ Completed: <span id="runningCompleted">12</span>
+        </a>
+        <a
+          href="runningTaskRejected.html"
+          class="status-button runningRejected"
+        >
+          ❌ Rejected: <span id="runningRejected">2</span>
+        </a>
+      </div>
+      <h2>Pending Task List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Assigned To</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Upload Video</td>
+            <td>John Doe</td>
+            <td>Pending</td>
+            <td>
+              <button class="action running">Running</button>
+              <button class="action reject">Reject</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Complete Survey</td>
+            <td>Jane Smith</td>
+            <td>Pending</td>
+            <td>
+              <button class="action running">Running</button>
+              <button class="action reject">Reject</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      const sidebar = document.getElementById("sidebar");
+      const menuBtn = document.getElementById("menuBtn");
+      const nightBtn = document.getElementById("nightBtn");
+      const searchBtn = document.getElementById("searchBtn");
+      const searchInput = document.getElementById("searchInput");
+      // 🧠 Role-based sidebar filtering
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const role = sessionStorage.getItem("role");
+        if (!role) {
+          window.location.href = "admin-index.html"; // if no role , redirect
+          return;
+        }
+        document.querySelectorAll("#sidebar a").forEach((link) => {
+          const roleAttr = link.getAttribute("data-role");
+          if (roleAttr) {
+            const allowedRoles = roleAttr.split(",").map((r) => r.trim());
+            if (!allowedRoles.includes(role)) {
+              link.style.display = "none";
+            }
+          }
+        });
+      });
+      // 📱 Sidebar toggle for mobile/desktop
+      menuBtn.addEventListener("click", () => {
+        window.innerWidth <= 768
+          ? sidebar.classList.toggle("show")
+          : sidebar.classList.toggle("hide");
+      });
+      document.addEventListener("click", (e) => {
+        if (
+          window.innerWidth <= 768 &&
+          !sidebar.contains(e.target) &&
+          !menuBtn.contains(e.target)
+        ) {
+          sidebar.classList.remove("show");
+        }
+      });
+      nightBtn.addEventListener("click", () => {
+        document.body.classList.toggle("night");
+        nightBtn.textContent = document.body.classList.contains("night")
+          ? "✨️"
+          : "🌙";
+      });
+
+      // 🔍 Search filter for tasks
+      searchBtn.addEventListener("click", () => {
+        const q = searchInput.value.trim().toLowerCase();
+        const rows = document.querySelectorAll("tbody tr");
+
+        rows.forEach((row) => {
+          const text = row.innerText.toLowerCase();
+          row.style.display = text.includes(q) ? "" : "none";
+        });
+      });
+      // task filter
+      function renderUsers(statusType) {
+        const rows = document.querySelectorAll("tbody tr");
+
+        rows.forEach((row) => {
+          const status = row
+            .querySelector("td:nth-child(4)")
+            .textContent.trim()
+            .toLowerCase();
+          row.style.display = status === statusType.toLowerCase() ? "" : "none";
+        });
+      }
+      // Initial load
+      renderUsers("Pending");
+
+      // Active button highlighting
+      function markActiveButton(statusClass) {
+        document.querySelectorAll(".status-button").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+
+        const targetBtn = document.querySelector(
+          `.status-button.${statusClass}`
+        );
+        if (targetBtn) {
+          targetBtn.classList.add("active");
+        }
+      }
+
+      // Initial load
+      markActiveButton("runningPending");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Users - EarnTask Admin</title>
+    <link rel="stylesheet" href="./assets/css/admin.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="left">
+        <span class="menu-btn" id="menuBtn">&#9776;</span>
+        <h3>Users Control Panel</h3>
+      </div>
+      <div class="right">
+        <input type="text" id="searchInput" placeholder="Search users..." />
+        <button id="searchBtn">Search</button>
+        <button id="nightBtn">🌙</button>
+      </div>
+    </div>
+    <!-- sidebar.html -->
+    <div class="sidebar" id="sidebar">
+      <a href="admin-dashboard.html" data-role="admin">Dashboard</a>
+      <a
+        href="user-control-g-moderator.html"
+        data-role="admin"
+        data-section="user-control"
+        >Users Control</a
+      >
+      <a href="running-task-incoming.html" data-role="admin">Running Tasks</a>
+      <a href="admin-working-t-incoming.html" data-role="admin"
+        >Admin Working</a
+      >
+      <a href="moderator-d-t-incoming.html" data-role="admin"
+        >Moderator Defined</a
+      >
+      <a href="user-worked-t-incoming.html" data-role="admin">User Worked</a>
+      <a href="admin-reports.html" data-role="admin">Reports</a>
+      <a href="ads.html" data-role="admin">Ads</a>
+      <a href="admin-p-l-i.html" data-role="admin">Login Info</a>
+      <a href="admin-settings.html" data-role="admin">Settings</a>
+      <a href="admin-index.html" data-role="admin">Logout</a>
+    </div>
+    <!-- main-content -->
+    <div class="main-content">
+      <h2>User Control Overview</h2>
+      <div class="status-buttons">
+        <a
+          href="user-control-g-moderator"
+          class="status-buttons moderator"
+          id="user-control-g-moderator"
+          >Moderator 12</a
+        >
+        <a
+          href="user-control-general.html"
+          class="status-buttons general"
+          id="user-control-general"
+          >General 10</a
+        >
+        <a
+          href="user-control-waiting.html"
+          class="status-buttons waiting"
+          id="user-control-waiting"
+          data-section="user-control"
+          >Waiting 20</a
+        >
+        <a
+          href="user-control-incoming.html"
+          class="status-buttons incoming"
+          id="user-control-incoming"
+          >Incoming 22</a
+        >
+        <a
+          href="user-control-deleted.html"
+          class="status-buttons deleted"
+          id="user-control-deleted"
+          >Deleted 15</a
+        >
+      </div>
+
+      <h2>Waiting User List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>hasan Smith</td>
+            <td>hasan@example.co</td>
+            <td>+88087654220</td>
+            <td>
+              <button class="action approve">Approve</button>
+              <button class="action reject">Reject</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="assets/js/admin-root.js"></script>
+    <!-- <script src="assets/js/user-control.js"></script> -->
+    <script></script>
+  </body>
+</html>

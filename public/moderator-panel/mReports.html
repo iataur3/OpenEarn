@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Reports - EarnTask Admin</title>
+    <link rel="stylesheet" href="./assets/css/moderator.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="left">
+        <span class="menu-btn" id="menuBtn">&#9776;</span>
+        <h3>Reports</h3>
+      </div>
+      <div class="right">
+        <input type="text" id="searchInput" placeholder="Search reports..." />
+        <button id="searchBtn">Search</button>
+        <button id="nightBtn">🌙</button>
+      </div>
+    </div>
+    <!-- sidebar.html -->
+    <div class="sidebar" id="sidebar">
+      <a href="mDashboard.html" data-role="admin,moderator">Dashboard</a>
+      <a href="moderatorDT.html" data-role="admin,moderator">G M D Tasks</a>
+      <a href="user-worked-t-incoming.html" data-role="admin,moderator"
+        >User W Tasks</a
+      >
+      <a href="mReports.html" data-role="admin,moderator">Reports</a>
+      <a href="moderator-index.html" data-role="admin,moderator">Logout</a>
+    </div>
+    <!-- main-content -->
+    <div class="main-content">
+      <div class="content-area" id="contentArea">
+        <h2>Reports</h2>
+        <div class="dashboard-cards">
+          <div class="card">Total: <span id="userTR">19</span></div>
+          <div class="card">✅ Completed: <span id="userRC">12</span></div>
+          <div class="card">✅ Working: <span id="userRW">12</span></div>
+          <div class="card">⏳ Pending: <span id="userRP">5</span></div>
+        </div>
+        <h2>Report List</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Assigned To</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Title</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>John Doe</td>
+              <td>2025-08-18</td>
+              <td>10:00 AM</td>
+              <td>Why task is rejected</td>
+              <td>Pending</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Jane Smith</td>
+              <td>2025-08-17</td>
+              <td>09:30 AM</td>
+              <td>Task Pending</td>
+              <td>Completed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="./assets/js/moderator-root.js"></script>
+  </body>
+</html>

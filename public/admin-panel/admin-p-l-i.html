@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Panel - Login & Block Info</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 0px;
+        background: #f5f5f5;
+      }
+      h2 {
+        color: #333;
+      }
+      .tab-buttons button {
+        margin-right: 10px;
+        padding: 10px 20px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .tab-buttons button:hover {
+        background: #0056b3;
+      }
+      .tab-content {
+        margin-top: 20px;
+        display: none;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+      }
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+      .visible {
+        display: block !important;
+      }
+    </style>
+    <link rel="stylesheet" href="./assets/css/admin.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="left">
+        <span class="menu-btn" id="menuBtn">&#9776;</span>
+        <h3>Admin Dashboard</h3>
+      </div>
+      <div class="right">
+        <input type="text" id="searchInput" placeholder="Search..." />
+        <button id="searchBtn">Search</button>
+        <button id="nightBtn">🌙</button>
+      </div>
+    </div>
+    <!-- sidebar -->
+    <div class="sidebar" id="sidebar">
+      <a href="admin-dashboard.html" data-role="admin" data-section="dashboard"
+        >Dashboard</a
+      >
+      <a href="user-control-g-moderator.html" data-role="admin"
+        >Users Control</a
+      >
+      <a href="running-task-incoming.html" data-role="admin">Running Tasks</a>
+      <a href="admin-working-t-incoming.html" data-role="admin"
+        >Admin Working</a
+      >
+      <a href="moderator-d-t-incoming.html" data-role="admin"
+        >Moderator Defined</a
+      >
+      <a href="user-worked-t-incoming.html" data-role="admin">User Worked</a>
+      <a href="admin-reports.html" data-role="admin">Reports</a>
+      <a href="ads.html" data-role="admin">Ads</a>
+      <a href="admin-p-l-i.html" data-role="admin">Login Info</a>
+      <a href="admin-settings.html" data-role="admin">Settings</a>
+      <a href="admin-index.html" data-role="admin">Logout</a>
+    </div>
+    <!-- main-content -->
+    <div class="main-content">
+      <h2>Admin Panel: Login & Block Info</h2>
+      <div class="tab-buttons">
+        <button onclick="showTab('loginInfo')">Login Info</button>
+        <button onclick="showTab('blockInfo')">Blocked Devices</button>
+      </div>
+
+      <div id="loginInfo" class="tab-content visible">
+        <h3>Login History</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>User ID</th>
+              <th>Device</th>
+              <th>Network</th>
+              <th>Location</th>
+            </tr>
+          </thead>
+          <tbody id="loginTableBody">
+            <!-- JS will populate rows -->
+          </tbody>
+        </table>
+      </div>
+
+      <div id="blockInfo" class="tab-content">
+        <h3>Blocked Devices</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Device ID</th>
+              <th>Reason</th>
+              <th>Time</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="blockTableBody">
+            <!-- JS will populate rows -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="assets/js/admin-root.js"></script>
+    <script>
+      function showTab(tabId) {
+        document.querySelectorAll(".tab-content").forEach((tab) => {
+          tab.classList.remove("visible");
+        });
+        document.getElementById(tabId).classList.add("visible");
+      }
+
+      function populateLoginTable() {
+        const tbody = document.getElementById("loginTableBody");
+        tbody.innerHTML = "";
+
+        const logs = JSON.parse(localStorage.getItem("loginLogs") || "[]");
+
+        logs.forEach((entry) => {
+          const row = `<tr>
+        <td>${entry.time}</td>
+        <td>${entry.user}</td>
+        <td>${entry.device}</td>
+        <td>${entry.network || "—"}</td>
+        <td>${entry.location || "—"}</td>
+      </tr>`;
+          tbody.innerHTML += row;
+        });
+      }
+
+      function populateBlockTable() {
+        const tbody = document.getElementById("blockTableBody");
+        tbody.innerHTML = "";
+
+        const blocks = JSON.parse(
+          localStorage.getItem("blockedDevices") || "[]"
+        );
+
+        blocks.forEach((entry, index) => {
+          const row = `<tr>
+        <td>${entry.deviceId}</td>
+        <td>${entry.reason}</td>
+        <td>${entry.time}</td>
+        <td><button onclick="unblock(${index})">Unblock</button></td>
+      </tr>`;
+          tbody.innerHTML += row;
+        });
+      }
+
+      function unblock(index) {
+        const blocks = JSON.parse(
+          localStorage.getItem("blockedDevices") || "[]"
+        );
+        const device = blocks[index];
+
+        blocks.splice(index, 1);
+        localStorage.setItem("blockedDevices", JSON.stringify(blocks));
+        localStorage.removeItem("loginBlocked");
+        localStorage.removeItem("loginAttempts");
+
+        alert(`✅ Device ${device.deviceId} has been unblocked`);
+        populateBlockTable();
+      }
+
+      function blockDevice() {
+        const blockLog = {
+          deviceId: navigator.userAgent,
+          reason: "3 failed logins",
+          time: new Date().toISOString(),
+        };
+
+        // Save to localStorage
+        const blocks = JSON.parse(
+          localStorage.getItem("blockedDevices") || "[]"
+        );
+        blocks.push(blockLog);
+        localStorage.setItem("blockedDevices", JSON.stringify(blocks));
+        localStorage.setItem("loginBlocked", "true");
+
+        // Send to backend
+        fetch("/api/device-blocks", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(blockLog),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log("✅ Block sent:", data))
+          .catch((err) => console.error("❌ Error sending block:", err));
+
+        populateBlockTable();
+      }
+
+      function handleLoginAttempt(success) {
+        if (success) {
+          localStorage.setItem("loginAttempts", "0");
+
+          const username = document.getElementById("username").value;
+          const device = navigator.userAgent;
+          const networkType = navigator.connection?.effectiveType || "Unknown";
+
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const location = `Lat: ${position.coords.latitude}, Long: ${position.coords.longitude}`;
+
+              const log = {
+                time: new Date().toISOString(),
+                user: username,
+                device: device,
+                network: networkType,
+                location: location,
+              };
+
+              // Save to localStorage
+              const logs = JSON.parse(
+                localStorage.getItem("loginLogs") || "[]"
+              );
+              logs.push(log);
+              localStorage.setItem("loginLogs", JSON.stringify(logs));
+
+              // Optional: send to backend
+              fetch("/api/login-logs", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(log),
+              });
+            },
+            (error) => {
+              console.warn("❌ Location error:", error);
+
+              const log = {
+                time: new Date().toISOString(),
+                user: username,
+                device: device,
+                network: networkType,
+                location: "Unavailable",
+              };
+
+              const logs = JSON.parse(
+                localStorage.getItem("loginLogs") || "[]"
+              );
+              logs.push(log);
+              localStorage.setItem("loginLogs", JSON.stringify(logs));
+            }
+          );
+
+          return;
+        }
+
+        // ❌ Failed login logic (unchanged)
+        let attempts = parseInt(localStorage.getItem("loginAttempts") || "0");
+        attempts++;
+        localStorage.setItem("loginAttempts", attempts);
+
+        if (attempts >= 3) {
+          blockDevice();
+          alert("🚫 Device blocked due to suspicious login attempts");
+        }
+      }
+      // function handleLoginAttempt(success) {
+      //   if (success) {
+      //     localStorage.setItem("loginAttempts", "0");
+      //     return;
+      //   }
+
+      //   let attempts = parseInt(localStorage.getItem("loginAttempts") || "0");
+      //   attempts++;
+      //   localStorage.setItem("loginAttempts", attempts);
+
+      //   if (attempts >= 3) {
+      //     blockDevice();
+      //     alert("🚫 Device blocked due to suspicious login attempts");
+      //   }
+      // }
+
+      // Initial load
+      populateLoginTable();
+      populateBlockTable();
+
+      // document.getElementById("loginBtn").addEventListener("click", () => {
+      //   const success = validateLogin(); //  login validation logic
+      //   handleLoginAttempt(success); // login fail = block trigger
+      // });
+    </script>
+  </body>
+</html>
