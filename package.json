@@ -8,7 +8,8 @@
     "dev": "react-scripts start",
     "functions": "firebase emulators:start --only functions",
     "serve": "concurrently \"npm run functions\" \"npm run dev\"",
-    "fullbuild": "npm run build && echo Backend ready (no build needed)"
+    "fullbuild": "npm run build && echo Backend ready (no build needed)",
+    "safeemulators": "firebase emulators:start --only firestore,functions,hosting"
   },
   "dependencies": {
     "react": "^18.2.0",

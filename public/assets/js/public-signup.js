@@ -314,7 +314,7 @@ function loadConfirmation() {
   noData.style.display = "none";
 }
 
-// // public/assets/js/public-signup.js
+// public/assets/js/public-signup.js
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const express = require("express");
@@ -322,11 +322,12 @@ const express = require("express");
 admin.initializeApp();
 
 const app = express();
-app.use(express.json()); // ✅ Body parser
+app.use(express.json());
 
 app.post("/submitSignup", async (req, res) => {
   try {
     const data = req.body;
+    // console.log("Received data:", data);
     if (!data.name || !data.email || !data.phone) {
       return res.status(400).send({ success: false, error: "Missing fields" });
     }
